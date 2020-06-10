@@ -1,0 +1,11 @@
+@model BusinessApp.CarpetWash.MvcWebUI.Models.ServicesViewModel
+@using BusinessApp.CarpetWash.Entities.Concrete.Enums
+<ul>
+    @{
+       foreach (var item in @Model.Services)
+       {
+         <li><i class="bx bx-chevron-right"></i> <a asp-controller="Contents" asp-action="Index" asp-route-IsFrontSideIndex=true
+                                                    asp-route-type=@ContentType.Service>@item</a></li>
+       }
+    }
+</ul>
