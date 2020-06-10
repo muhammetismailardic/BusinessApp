@@ -1,0 +1,21 @@
+﻿@model BusinessApp.CarpetWash.Entities.Concrete.Banner
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <header class="panel-heading">Are you sure you want to delete this?</header>
+        <div class="panel-body">
+            <div class="form-group">
+                @Html.DisplayFor(model => model.Title)
+            </div>
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" class="btn btn-danger">Delete</button>
+                <a asp-action="Index" class="btn btn-default">Back to List</a>
+            </form>
+        </div>
+    </div>
+</div>

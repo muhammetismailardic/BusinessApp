@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using BusinessApp.CarpetWash.Entities.Concrete
+@using BusinessApp.CarpetWash.Entities.Concrete.Enums
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+
+    <li class="drop-down">
+        <a href="">Hello, @UserManager.GetUserName(User)!</a>
+        <ul>
+            <li class="drop-down">
+                <a asp-controller="Admin" asp-action="Index">Admin Home</a>
+                <ul>
+                    <li><a asp-controller="Contents" asp-action="Create" asp-route-type="@ContentType.Post">Post Oluştur</a></li>
+                    <li><a asp-controller="Contents" asp-action="Create" asp-route-type="@ContentType.Service">Hizmet Oluştur</a></li>
+                    <li><a asp-controller="Contents" asp-action="Create" asp-route-type="@ContentType.ServiceRegion">Hizmet Bölgesi Oluştur</a></li>
+                </ul>
+            </li>
+            <li><a asp-controller="Account" asp-action="Index">Hesabım</a></li>
+            <li>
+                <a type="submit" asp-controller="Account" asp-action="LogOut" method="post" id="logoutForm"><i class="icofont-sign-out"></i> Sign Out</a>
+            </li>
+        </ul>
+    </li>
+
+}
+else
+{
+    <li><a href="#" id="topnavbar-login-btn" class="nav-link text-dark" data-toggle="modal" data-target="#login-modal"><i class="icofont-sign-in"></i> Sign In</a></li>
+}

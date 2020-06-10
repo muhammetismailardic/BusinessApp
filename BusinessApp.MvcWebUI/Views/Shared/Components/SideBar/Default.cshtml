@@ -1,0 +1,54 @@
+﻿@model BusinessApp.CarpetWash.MvcWebUI.Models.SideBarViewModel
+
+<div class="sidebar" data-aos="fade-left">
+    <h3 class="sidebar-title">Search</h3>
+    <div class="sidebar-item search-form">
+        <form action="">
+            <input type="text">
+            <button type="submit"><i class="icofont-search"></i></button>
+        </form>
+
+    </div><!-- End sidebar search formn-->
+
+    <h3 class="sidebar-title">Hizmetler</h3>
+    <div class="sidebar-item categories">
+        <ul>
+            @{
+                foreach (var item in Model.Services)
+                {
+                    <li><a asp-controller="Contents" asp-action="Details" asp-route-id="@item.Id" asp-route-IsFrontSideDetails="@true">@item.Title <span></span></a></li>
+                }
+            }
+        </ul>
+    </div><!-- End sidebar categories-->
+
+    <h3 class="sidebar-title">Yeni Eklenenler</h3>
+    <div class="sidebar-item recent-posts">
+        @{
+            foreach (var item in Model.ContentByType)
+            {
+                <div class="post-item clearfix">
+                    <img src="~/images/content/@item.Image" alt="">
+                    <h4><a asp-controller="Contents" asp-action="Details" asp-route-id="@item.Id" asp-route-IsFrontSideDetails="@true">@item.Title</a></h4>
+                    <time datetime="2020-01-01">@item.UpdatedAt</time>
+                </div>
+            }
+        }
+
+    </div><!-- End sidebar recent posts-->
+
+    @if (Model.Tags.Count != 0)
+    {
+        <h3 class="sidebar-title">Etiketler</h3>
+        <div class="sidebar-item tags">
+            <ul>
+                @{
+                    foreach (var item in Model.Tags)
+                    {
+                        <li><a href="#">@item.Name</a></li>
+                    }
+                }
+            </ul>
+        </div><!-- End sidebar tags-->
+    }
+</div><!-- End sidebar -->

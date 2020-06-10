@@ -1,0 +1,47 @@
+﻿@model BusinessApp.CarpetWash.MvcWebUI.Models.BannerViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <header class="panel-heading">Create New Banner</header>
+        <div class="panel-body">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SubTitle" class="control-label"></label>
+                    <input asp-for="SubTitle" class="form-control" />
+                    <span asp-validation-for="SubTitle" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BtnTitle" class="control-label"></label>
+                    <input asp-for="BtnTitle" class="form-control" />
+                    <span asp-validation-for="BtnTitle" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ProfileImage">Choose file</label>
+                    <input asp-for="ProfileImage">
+                </div>
+                <div class="form-group">
+                    <span asp-validation-for="ProfileImage" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-success" />
+                    <a asp-action="Index" class="btn btn-danger">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

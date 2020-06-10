@@ -1,0 +1,88 @@
+﻿@model BusinessApp.CarpetWash.MvcWebUI.Models.ContentViewModel
+@{
+    ViewData["Title"] = "HomeIndex";
+}
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Blog</h2>
+                <ol>
+                    <li><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+                    <li>Blog</li>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+    <!-- ======= Blog Section ======= -->
+    <section id="blog" class="blog">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-lg-8 entries">
+                    @{
+                        foreach (var item in Model.Contents.TakeLast(4))
+                        {
+                            <article class="entry" data-aos="fade-up">
+
+                                <div class="entry-img">
+                                    <a asp-controller="Contents" asp-action="Details" asp-route-id="@item.Id" asp-route-IsFrontSideDetails="@true">
+                                        <img src="~/images/content/@item.Image" alt="" class="img-fluid">
+                                    </a>
+                                </div>
+
+                                <h2 class="entry-title">
+                                    <a asp-controller="Contents" asp-action="Details" asp-route-id="@item.Id" asp-route-IsFrontSideDetails="@true">
+                                        @item.Title
+                                    </a>
+                                </h2>
+
+                                <div class="entry-meta">
+                                    <ul>
+                                        <li class="d-flex align-items-center"><i class="icofont-user"></i> <a href="blog-single.html">@item.User.UserName</a></li>
+                                        <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">@item.UpdatedAt</time></a></li>
+                                        <li class="d-flex align-items-center"><i class="icofont-comment"></i> <a href="blog-single.html">@item.Comments.Count</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="entry-content">
+                                    <p>@Html.Raw(item.Excerpt)</p>
+                                    <div class="read-more">
+                                        <a asp-controller="Contents" asp-action="Details" asp-route-id="@item.Id" asp-route-IsFrontSideDetails="@true">İncele</a>
+                                    </div>
+                                </div>
+
+                            </article><!-- End blog entry -->
+                        }
+                    }
+
+                    <content-list-pager current-type="@Model.Type"
+                                        current-page="@Model.CurrentPage"
+                                        page-count="@Model.PageCount"
+                                        page-size="@Model.PageSize"
+                                        is-front-side-index="@Model.IsFrontSideIndex">
+                    </content-list-pager>
+
+                </div><!-- End blog entries list -->
+                <!-- Side Bar -->
+
+                <div class="col-lg-4">
+                    @{
+                        var contentType = Model.Contents.Select(x => x.Type).FirstOrDefault();
+                        @await Component.InvokeAsync("SideBar", new { type = contentType })
+                    }
+
+                </div><!-- End blog sidebar -->
+
+            </div>
+
+        </div>
+    </section><!-- End Blog Section -->
+
+</main><!-- End #main -->

@@ -1,0 +1,34 @@
+﻿@model BusinessApp.CarpetWash.MvcWebUI.Models.CategoryViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<!-- Basic form -->
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <header class="panel-heading">Create New Category</header>
+        <div class="panel-body">
+            <form role="form" asp-action="Create" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ProfileImage">Choose file</label>
+                    <input asp-for="ProfileImage">
+                </div>
+
+                <div class="form-group">
+                    <span asp-validation-for="ProfileImage" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Create New Category</button>
+                    <a asp-action="Index" class="btn btn-danger">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

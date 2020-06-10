@@ -1,0 +1,54 @@
+﻿@model IEnumerable<BusinessApp.CarpetWash.Entities.Concrete.Banner>
+
+@{
+    ViewData["Title"] = "Banner Index Page";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<!-- Responsive table -->
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <header class="panel-heading"><a asp-controller="Banners" asp-action="Create">Create New</a></header>
+        <div class="panel-body">
+            <table class="table table-striped footable">
+                <thead>
+                    <tr>
+                        <th data-hide="phone,tablet">Image</th>
+                        <th data-toggle="true">Title</th>
+                        <th data-hide="phone,tablet">Created At</th>
+                        <th data-hide="phone,tablet">Updated At</th>
+                        <th data-hide="phone">Action</th>
+                        <th data-hide="phone">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="~/images/banner/@item.Image" class="img-fluid img-thumbnail" alt="Sheep" height="150" width="150" asp-append-version="true">
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedAt)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UpdatedAt)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                            <td data-value="3"><span class="label label-warning">Suspended</span></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

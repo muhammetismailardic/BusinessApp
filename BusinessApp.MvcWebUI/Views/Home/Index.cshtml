@@ -1,0 +1,151 @@
+﻿@model BusinessApp.CarpetWash.MvcWebUI.Models.HomeViewModel
+@{
+    Layout = "_Layout";
+}
+
+<!-- ======= BannerSection ======= -->
+@await Html.PartialAsync("~/Views/Home/Partials/_BannerSectionPartial.cshtml", Model.banners)
+<main id="main">
+    <!-- ======= Cta Section ======= -->
+    <section id="cta" class="cta">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-9 text-center text-lg-left">
+                    <h3>We've created more than <span>200 websites</span> this year!</h3>
+                    <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="col-lg-3 cta-btn-container text-center">
+                    <a class="cta-btn align-middle" href="#">Request a quote</a>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Cta Section -->
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+
+            <div class="section-title" data-aos="fade-up">
+                <h2>Some of our <strong>recent works</strong></h2>
+            </div>
+
+            <div class="row portfolio-container" data-aos="fade-in">
+                @{
+                    var services = Model.Services;
+
+                    foreach (var item in services)
+                    {
+                        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                            <img src="images/content/@item.Image" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>sdsd</h4>
+                                <p>sdsdsd</p>
+                                <a href="assets/img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+                                <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+
+        </div>
+    </section><!-- End Portfolio Section -->
+
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Bunları <strong>Biliyormuydunuz?</strong></h2>
+            </div>
+            <div class="row" data-aos="fade-in">
+
+                @{
+                    foreach (var item in Model.Posts.TakeLast(3))
+                    {
+                        <div class="col-md-4">
+                            <div class="card mb-4 box-shadow">
+                                <img class="card-img-top" src="~/images/content/@item.Image">
+                                <div class="card-body">
+                                    <h3>Testddddddddddd</h3>
+                                    <p class="card-text">@item.Excerpt</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a asp-controller="Content" asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-light" style="background-color:orangered" role="button">View details »</a>
+                                        </div>
+                                        <small class="text-muted">9 mins</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ======= Our Clients Section ======= -->
+    <section id="clients" class="clients">
+        <div class="container">
+
+            <div class="section-title" data-aos="fade-up">
+                <h2>Our <strong>Clients</strong></h2>
+                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+            </div>
+
+            <div class="row no-gutters clients-wrap clearfix" data-aos="fade-up">
+
+                <div class="col-lg-3 col-md-4 col-xs-6">
+                    <div class="client-logo">
+                        <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-xs-6">
+                    <div class="client-logo">
+                        <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-xs-6">
+                    <div class="client-logo">
+                        <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-xs-6">
+                    <div class="client-logo">
+                        <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-xs-6">
+                    <div class="client-logo">
+                        <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-xs-6">
+                    <div class="client-logo">
+                        <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-xs-6">
+                    <div class="client-logo">
+                        <img src="assets/img/clients/client-7.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-xs-6">
+                    <div class="client-logo">
+                        <img src="assets/img/clients/client-8.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- End Our Clients Section -->
+
+
+</main><!-- End #main -->

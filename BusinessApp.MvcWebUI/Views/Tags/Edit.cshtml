@@ -1,0 +1,39 @@
+﻿@model BusinessApp.CarpetWash.Entities.Concrete.Tag
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Basic form -->
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <header class="panel-heading">Edit New Tag</header>
+        <div class="panel-body">
+            <form role="form" asp-action="Edit">
+                <input asp-for="Id" class="form-control" type="hidden" />
+                <input asp-for="CreatedAt" class="form-control" type="hidden" />
+                <input asp-for="ContentId" class="form-control" type="hidden" />
+                
+                <div class="form-group">
+                    <label asp-for="Slug" class="control-label"></label>
+                    <input asp-for="Slug" class="form-control" />
+                    <span asp-validation-for="Slug" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ItemType" class="control-label"></label>
+                    <input asp-for="ItemType" class="form-control" />
+                    <span asp-validation-for="ItemType" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-success">Update</button>
+                <a asp-action="Index" class="btn btn-danger">Back to List</a>
+            </form>
+        </div>
+    </div>
+</div>
