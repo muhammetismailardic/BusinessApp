@@ -112,24 +112,43 @@
                 <div class="row">
 
                     <div class="col-lg-3 col-md-6 footer-contact">
-                        <h3>Flattern</h3>
+                        <h3>Gürpak Halı Yıkama</h3>
                         <p>
-                            A108 Adam Street <br>
-                            New York, NY 535022<br>
-                            United States <br><br>
-                            <strong>Phone:</strong> +1 5589 55488 55<br>
-                            <strong>Email:</strong> info@example.com<br>
+                            Bahçelievler <br>
+                            Istanbul<br>
+                            Türkiye <br><br>
+                            <strong>Phone:</strong> +530 223 52 41<br>
+                            <strong>Email:</strong> info@gurpakhaliyikama.com<br>
                         </p>
                     </div>
 
                     <div class="col-lg-2 col-md-6 footer-links">
                         <h4>Useful Links</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                            <li><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+                            <li>
+                                <a asp-controller="Contents" asp-action="Index"
+                                asp-route-type="@ContentType.Service"
+                                asp-route-IsFrontSideIndex="@true">
+                                    Hizmetler
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Contents" asp-action="Index"
+                                asp-route-type="@ContentType.ServiceRegion"
+                                asp-route-IsFrontSideIndex="@true">
+                                    Hizmet Bölgelerimiz
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Contents" asp-action="Index"
+                                asp-route-type="@ContentType.Post"
+                                asp-route-IsFrontSideIndex="@true">
+                                    Blog
+                                </a>
+                            </li>
+                            <li><a asp-controller="Home" asp-action="About">Hakkımızda</a></li>
+                            <li><a asp-controller="Home" asp-action="Contact">İletişim</a></li>
                         </ul>
                     </div>
 
