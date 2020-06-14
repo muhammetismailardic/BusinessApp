@@ -97,17 +97,26 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         {
             try
             {
+                //TODO: This will be deleted later.
+                var user =  _userManager.FindByNameAsync(loginViewModel.UserName).Result;
+                var role = _userManager.GetRolesAsync(user).Result.SingleOrDefault();
+
                 if (ModelState.IsValid)
                 {
-                    var result = _signInManager.PasswordSignInAsync(loginViewModel.UserName,
+                    //TODO: This condition will be delete.
+                    if(role == "Administrator") 
+                    {
+                        var result = _signInManager.PasswordSignInAsync(loginViewModel.UserName,
                         loginViewModel.Password, loginViewModel.RememberMe, loginViewModel.RememberMe).Result;
 
-                    if (result.Succeeded)
-                    {
-                        return RedirectToAction("Index", "Admin");
-                    }
+                        if (result.Succeeded)
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
 
-                    ModelState.AddModelError("", "Invalid login attempt!");
+                        ModelState.AddModelError("", "Invalid login attempt!");
+                    }
+                    else { return RedirectToAction("Index", "Home"); }
                 }
 
                 TempData.Put("modal", new ModalData

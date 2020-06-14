@@ -1,0 +1,30 @@
+﻿@using BusinessApp.CarpetWash.Entities.Concrete.Enums
+<nav class="nav-menu d-none d-lg-block">
+    <ul>
+        <li><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+        <li>
+            <a asp-controller="Contents" asp-action="Index"
+               asp-route-type="@ContentType.Service"
+               asp-route-IsFrontSideIndex="@true">
+                Hizmetler
+            </a>
+        </li>
+        <li>
+            <a asp-controller="Contents" asp-action="Index"
+               asp-route-type="@ContentType.ServiceRegion"
+               asp-route-IsFrontSideIndex="@true">
+                Hizmet Bölgelerimiz
+            </a>
+        </li>
+        <li>
+            <a asp-controller="Contents" asp-action="Index"
+               asp-route-type="@ContentType.Post"
+               asp-route-IsFrontSideIndex="@true">
+                Blog
+            </a>
+        </li>
+        <li><a asp-controller="Home" asp-action="About">Hakkımızda</a></li>
+        <li><a asp-controller="Home" asp-action="Contact">İletişim</a></li>
+        @await Html.PartialAsync("~/Views/Shared/Partials/_LoginPartial.cshtml")
+    </ul>
+</nav><!-- .nav-menu -->
