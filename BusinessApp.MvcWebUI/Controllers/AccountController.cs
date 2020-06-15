@@ -103,7 +103,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    //TODO: This condition will be delete.
+                    //TODO: This condition will be deleted.
                     if(role == "Administrator") 
                     {
                         var result = _signInManager.PasswordSignInAsync(loginViewModel.UserName,
