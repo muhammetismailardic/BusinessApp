@@ -106,6 +106,8 @@
                                             <input name="ContentId" class="form-control"  value="@Model.Id" type="hidden">
                                             <input name="UserId" class="form-control"  value="@Model.UserId" type="hidden">
                                             <input name="IsAnonymous" class="form-control" value="False" type="hidden">
+                                            <input name="Email" class="form-control" value="@Model.User.Email" type="hidden">
+                                            <input name="Name" class="form-control" value="@Model.User.UserName" type="hidden">
                                         </div>
                                         <div class="row">
                                             <div class="col form-group">
@@ -146,9 +148,11 @@
 
                         @foreach (var item in @Model.Comments)
                         {
+                            var userPic = @item.User != null ? (@item.User.Image == null ? "anonymous.jpg" : @item.User.Image ) : "anonymous.jpg";
+
                             <div id="comment-@item.Id" class="comment clearfix">
-                            <img src="~/assets/img/comments-1.jpg" class="comment-img  float-left" alt="">
-                            <h5><a href="">@item.Name</a> <a href="#" class="reply"><i class="icofont-reply"></i> Reply</a></h5>
+                            <img src="~/images/users/@userPic" class="comment-img  float-left" alt="">
+                            <h5><a href="#">@item.Name</a> </h5>
                             <time datetime="2020-01-01">@item.UpdatedAt</time>
                             <p>
                                 @item.Text

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace BusinessApp.CarpetWash.Business.Concrete
 {
@@ -66,6 +67,21 @@ namespace BusinessApp.CarpetWash.Business.Concrete
             }
         }
 
+        public async Task<ICollection<Comment>> GetAllCommentsByContentIdAsync(int contentId)
+        {
+            try
+            {
+                var comments = await _commentDal.GetListWithIncludesAsync(
+                    (c => c.Id == contentId),
+                        c => c.Include(con => con.User));
+                
+                return comments;
+            }
+            catch (System.Exception ex)
+            {
+                throw;
+            }
+        }
         public async Task UpdateAsync(Comment comment)
         {
             try

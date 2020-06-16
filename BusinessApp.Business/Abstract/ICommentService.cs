@@ -13,5 +13,6 @@ namespace BusinessApp.CarpetWash.Business.Abstract
         Task DeleteAsync(int commentId);
         Task<ICollection<Comment>> GetAllCommentsAsync();
         Task<Comment> FindCommentByIdAsync(int commentId);
+        Task<ICollection<Comment>> GetAllCommentsByContentIdAsync(int contentId);
     }
 }

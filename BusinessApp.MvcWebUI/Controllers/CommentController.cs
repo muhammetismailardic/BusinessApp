@@ -26,33 +26,11 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         }
 
         // GET: Category
-        // public async Task<IActionResult> Index()
-        // {
-        //     return View();
-        // }
-
-        // GET: Category/Details/5
-        // public async Task<IActionResult> Details(int? id)
-        // {
-        //     if (id == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     var categoryById = await _categoryService.FindCategoryByIdAsync(id);
-
-        //     if (categoryById == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     return View(categoryById);
-        // }
-
-        // GET: Category/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Index(int contentId)
         {
-            return View();
+            var commentsByContentId = await _commentService.GetAllCommentsByContentIdAsync(contentId);
+
+            return View(commentsByContentId);
         }
 
         // POST: Category/Create

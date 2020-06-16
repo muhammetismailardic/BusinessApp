@@ -13,22 +13,27 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
     {
         IContentService _contetService;
         IBannerService _bannerService;
-        public HomeController(IContentService contentService, IBannerService bannerService)
+
+        ICommentService _commentService;
+        public HomeController(IContentService contentService, IBannerService bannerService ,ICommentService commentService)
         {
             _contetService = contentService;
             _bannerService = bannerService;
+            _commentService = commentService;
         }
         public async Task<IActionResult> Index()
         {
             var contents = await _contetService.GetAllContentsAsync(ContentType.All);
             var banners = await _bannerService.GetAllBannersAsync();
+            var comments = await _commentService.GetAllCommentsAsync();
 
             var content = new HomeViewModel
             {
                 banners = banners,
                 Services = contents.Where(x => x.Type == ContentType.Service),
                 Posts = contents.Where(x => x.Type == ContentType.Post),
-                ServiceRegion = contents.Where(x => x.Type == ContentType.ServiceRegion)
+                ServiceRegion = contents.Where(x => x.Type == ContentType.ServiceRegion),
+                Comments = comments.Take(2).OrderByDescending(x=> x.CreatedAt)
             };
             return View(content);
         }

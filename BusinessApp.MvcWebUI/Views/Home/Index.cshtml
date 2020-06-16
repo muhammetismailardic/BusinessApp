@@ -38,8 +38,8 @@
                         <div class="col-lg-4 col-md-6 portfolio-item filter-app">
                             <img src="images/content/@item.Image" class="img-fluid" alt="">
                             <div class="portfolio-info">
-                                <h4>sdsd</h4>
-                                <p>sdsdsd</p>
+                                <h4>@item.Title</h4>
+                                <p style="width: 250px; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">@item.Excerpt</p>
                                 <a href="assets/img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
                                 <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
                             </div>
@@ -124,6 +124,6 @@
 
     <!-- ======= Our Clients Section ======= -->
 
-    @await Html.PartialAsync("~/Views/Shared/Partials/_TestimonialPartial.cshtml")
+    @await Html.PartialAsync("~/Views/Home/Partials/_TestimonialPartial.cshtml",@Model)
 
 </main><!-- End #main -->
