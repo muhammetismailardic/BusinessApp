@@ -68,8 +68,7 @@
                 <!-- Uncomment below if you prefer to use an image logo -->
                 <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
             </div>
-            @{ var _type = new ContentType();}
-            @await Component.InvokeAsync("Navigation", new { type = _type })
+            @await Component.InvokeAsync("Navigation")
         </div>
     </header><!-- End Header -->
     <!-- ======= Main Section ======= -->

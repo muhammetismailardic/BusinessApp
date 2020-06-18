@@ -26,6 +26,12 @@
                 </div>
 
                 <div class="form-group">
+                    <label asp-for="Slug" class="control-label"></label>
+                    <input asp-for="Slug" class="form-control" />
+                    <span asp-validation-for="Slug" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
                     <label asp-for="Excerpt" class="control-label"></label>
                     <input asp-for="Excerpt" class="form-control" />
                     <span asp-validation-for="Excerpt" class="text-danger"></span>

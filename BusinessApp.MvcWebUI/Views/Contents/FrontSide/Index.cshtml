@@ -33,15 +33,17 @@
                             <article class="entry" data-aos="fade-up">
 
                                 <div class="entry-img">
-                                    <a asp-controller="Contents" asp-action="Details" asp-route-id="@item.Id" asp-route-IsFrontSideDetails="@true">
+                                    @* <a asp-controller="Contents" asp-action="Details" asp-route-id="@item.Id" asp-route-IsFrontSideDetails="@true">
                                         <img src="~/images/content/@item.Image" alt="" class="img-fluid">
-                                    </a>
+                                    </a> *@
+                                    <a href="/@item.Slug-@item.Id"><img src="~/images/content/@item.Image" alt="" class="img-fluid"> </a>
                                 </div>
 
                                 <h2 class="entry-title">
-                                    <a asp-controller="Contents" asp-action="Details" asp-route-id="@item.Id" asp-route-IsFrontSideDetails="@true">
+                                    @* <a asp-controller="Contents" asp-action="Details" asp-route-id="@item.Id" asp-route-IsFrontSideDetails="@true">
                                         @item.Title
-                                    </a>
+                                    </a> *@
+                                     <a href="/@item.Slug-@item.Id"> @item.Title </a>
                                 </h2>
 
                                 <div class="entry-meta">
@@ -55,7 +57,8 @@
                                 <div class="entry-content">
                                     <p>@Html.Raw(item.Excerpt)</p>
                                     <div class="read-more">
-                                        <a asp-controller="Contents" asp-action="Details" asp-route-id="@item.Id" asp-route-IsFrontSideDetails="@true">İncele</a>
+                                        @* <a asp-controller="Contents" asp-action="Details" asp-route-id="@item.Id">İncele</a> *@
+                                        <a href="/@item.Slug-@item.Id"> İncele </a>
                                     </div>
                                 </div>
 

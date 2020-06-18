@@ -58,8 +58,8 @@
                                 @Html.DisplayFor(modelItem => item.IsActive)
                             </td>
                             <td>
-                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                <a asp-action="Edit" asp-route-id="@item.Id" asp-route-IsFrontSideDetails="False">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id" asp-route-IsFrontSideDetails="False">Details</a> |
                                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                             </td>
                             <td data-value="3"><span class="label label-warning">Suspended</span></td>

@@ -149,16 +149,12 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Models
                         UserId = "bc68af64-5675-4a5b-b6b2-92b2fd282cbf",
                         CategoryId = contentId,
                         Title = "Halı Yıkama",
+                        Slug = "hali-yikama",
                         Type = ContentType.Service,
-                        Excerpt = "GürPak HalıYıkama," +
-                        " süper 3 aşamalı halı yıkama" +
+                        Excerpt = 
+                        " Süper 3 aşamalı halı yıkama" +
                         " hizmeti metodu ile halılarınızı" +
-                        " istenilen temizliğe ulaştırır." +
-                        " Birinci adımda halılarınız toz çıkarma işlemine sokulur," +
-                        " daha sonra ikinci aşamada ise halılarınız tam otomatik" +
-                        " halı yıkama makinelerinde yıkanarak inatçı lekelerden kurtarılır." +
-                        " Daha sonra üçüncü ve son işlemimiz olan özel hava almayan halı" +
-                        " kurutma odalarımızda hijyenik şartlarda kurutulur.",
+                        " istenilen temizliğe ulaştırır.",
                         IsActive = true,
                         CreatedAt = DateTime.Now,
                         UpdatedAt = DateTime.Now,
@@ -169,12 +165,10 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Models
                        UserId = "bc68af64-5675-4a5b-b6b2-92b2fd282cbf",
                        CategoryId = contentId,
                        Title = "Battaniye Yıkama",
+                       Slug = "battaniye-yikama",
                        Type = ContentType.Service,
-                       Excerpt = "GürPak Halı Yıkama, Yorgan Yıkama ve Battaniye Yıkama Hizmeti" +
-                       " sunarak müşteri memnuniyeti odaklı hizmetler vermektedir." +
-                       " Yorgan ve Battaniyeleriniz için özel tasarlanmış yıkama makinelerinde" +
-                       " hijyenle temizlenmesini sağlayarak evinize kadar teslim edilir." +
-                       " İrtibat no:0532 441 5408",
+                       Excerpt = "Battaniye Yıkama Hizmeti" +
+                       "sunarak müşteri memnuniyeti odaklı hizmetler vermektedir.",
                        IsActive = true,
                        CreatedAt = DateTime.Now,
                        UpdatedAt = DateTime.Now,
@@ -185,12 +179,9 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Models
                        UserId = "bc68af64-5675-4a5b-b6b2-92b2fd282cbf",
                        CategoryId = contentId,
                        Title = " Yorgan Yıkama",
+                       Slug = "yorgan-yikama",
                        Type = ContentType.Service,
-                       Excerpt = "GürPak Halı Yıkama, Yorgan Yıkama ve Battaniye" +
-                       " Yıkama Hizmeti sunarak müşteri memnuniyeti odaklı hizmetler" +
-                       " vermektedir. Yorgan ve Battaniyeleriniz için özel tasarlanmış" +
-                       " yıkama makinelerinde hijyenle temizlenmesini sağlayarak evinize" +
-                       " kadar teslim edilir. İrtibat no:0532 441 5408",
+                       Excerpt = "Yorgan Yıkama hizmeti sunarak müşteri memnuniyeti odaklı hizmetler vermektedir.",
                        IsActive = true,
                        CreatedAt = DateTime.Now,
                        UpdatedAt = DateTime.Now,
@@ -201,16 +192,12 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Models
                        UserId = "bc68af64-5675-4a5b-b6b2-92b2fd282cbf",
                        CategoryId = contentId,
                        Title = "Koltuk Yıkama",
+                       Slug = "koltuk-yikama",
                        Type = ContentType.Service,
-                       Excerpt = "GürPak Halı Yıkama hizmetleri olarak," +
-                       " sizlere koltuk yıkama hizmeti de sunmaktayız." +
+                       Excerpt =
                        " Özel koltuk yıkama için tasarlanmış koltuk yıkama" +
                        " makinalarımız sayesinde koltukarınızı hijyen" +
-                       " ve temizlik ile buluşturuyoruz. 80-85 derece " +
-                       "arası sıcak köpüklü su ile koltukları tüm kirden" +
-                       " ve gözle görülmeyen bakterilerden arındırıyoruz" +
-                       " ve doğal ortamda 4-5 saat bırakılarak kuruması sağlanıyor." +
-                       "  İrtibat no:0532 441 5408.",
+                       " ve temizlik ile buluşturuyoruz.",
                        IsActive = true,
                        CreatedAt = DateTime.Now,
                        UpdatedAt = DateTime.Now,
@@ -221,14 +208,10 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Models
                        UserId = "bc68af64-5675-4a5b-b6b2-92b2fd282cbf",
                        CategoryId = contentId,
                        Title = "Store Perde Yıkama",
+                       Slug = "store-perde-yikama",
                        Type = ContentType.Service,
                        Excerpt = "GürPak Halı Yıkama olarak sizlere Stor" +
-                       " Perde Perde yıkama hizmetleride vermekteyiz." +
-                       " Zebra, güneşlik, normal ve diğer tüm stor" +
-                       " perdeleriniz ücresiz olarak servis aracımızla" +
-                       " evinizden alıp tesislerimizde yıkanmaktadır." +
-                       " Sizlere ulaşıldıktan sonra uygun bir zamanınızda" +
-                       " sizlere teslim edilmektedir. İrtibat no: 0532 411 5408",
+                       " Perde Perde yıkama hizmetleride vermekteyiz.",
                        IsActive = true,
                        CreatedAt = DateTime.Now,
                        UpdatedAt = DateTime.Now,
@@ -239,16 +222,12 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Models
                         UserId = "bc68af64-5675-4a5b-b6b2-92b2fd282cbf",
                         CategoryId = contentId,
                         Title = "Halı Tamiri",
+                        Slug = "hali-yikama",
                         Type = ContentType.Service,
-                        Excerpt = "Gürpak Halı Yıkama hizmetleri olarak," +
-                        " el dokuması, yün, veya makina halılarınızın bakım" +
-                        " ve onarımını konusunda siz müşterilerimize hizmet" +
-                        " vermektedir.Halılarınız zaman içinde dayanıklılığı" +
-                        " ve direnci bir çok faktörden dolayı bozulma gösterir," +
-                        " buda halı tamiri hizmeti gerektirir. Halı Tamiri ve" +
-                        " onarımında uzman kadromuz ile sizler en çokta hanımların" +
-                        " değer verdiği her türlü halınızın onarım işlemini gerçekleştiriyoruz." +
-                        "İrtibat No: 0532 441 5408",
+                        Excerpt =
+                        " El dokuması, yün, veya makina halılarınızın bakım" +
+                        " ve onarımını konusunda siz değerli müşterilerimize hizmet" +
+                        " verilmektedir.",
                         IsActive = true,
                         CreatedAt = DateTime.Now,
                         UpdatedAt = DateTime.Now,

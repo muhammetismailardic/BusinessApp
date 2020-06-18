@@ -61,6 +61,8 @@ namespace BusinessApp.MvcWebUI
                 .AddCookie();
             services.AddAuthorization();
 
+            services.AddRazorPages();
+
             ////Adding Session
             //services.AddSession();
             //// Session ı serviste tutma
@@ -87,6 +89,11 @@ namespace BusinessApp.MvcWebUI
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapRazorPages();
+                endpoints.MapControllerRoute(
+                name: "default",
+                pattern:"{controller=Contents}/{action=Details}/{id?}");
             });
             SeedData.CreateRolesAndAdminUser(serviceProvider);
         }

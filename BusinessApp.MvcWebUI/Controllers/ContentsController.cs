@@ -79,8 +79,10 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         }
 
 
-        //// GET: Contents/Details/5
-        public async Task<IActionResult> Details(int? id, bool IsFrontSideDetails = false)
+        // GET: Contents/Details/5
+        //[Route("/Contents/{id:int}")]
+        [Route("{slug}-{id:int}")]
+        public async Task<IActionResult> Details(int? id, bool IsFrontSideDetails = true)
         {
             if (id == null)
             {
@@ -119,7 +121,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         //POST: Contents/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserId,CategoryId,Title,Excerpt,Text,ProfileImage,IsActive,Type")] ContentViewModel contentViewModel, string tags)
+        public async Task<IActionResult> Create([Bind("Id,UserId,CategoryId,Title,Slug,Excerpt,Text,ProfileImage,IsActive,Type")] ContentViewModel contentViewModel, string tags)
         {
             string[] tagsarray;
             if (ModelState.IsValid)
@@ -138,6 +140,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                     IsActive = contentViewModel.IsActive,
                     Text = contentViewModel.Text,
                     Title = contentViewModel.Title,
+                    Slug = contentViewModel.Slug,
                     UserId = contentViewModel.UserId,
                     VisitCount = 0
                 };
@@ -187,6 +190,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                 IsActive = content.IsActive,
                 Text = content.Text,
                 Title = content.Title,
+                Slug = content.Slug,
                 CreatedAt = content.CreatedAt,
                 Tags = tagsAsString
             };
@@ -203,7 +207,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         //// more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,CategoryId,Title,Excerpt,Text,ProfileImage,IsActive,Type,CurrentImage")] ContentViewModel contentViewModel, string tags)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,CategoryId,Title,Slug,Excerpt,Text,ProfileImage,IsActive,Type,CurrentImage")] ContentViewModel contentViewModel, string tags)
         {
             if (id != contentViewModel.Id)
             {
@@ -221,6 +225,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                     content.UserId = contentViewModel.UserId;
                     content.CategoryId = contentViewModel.CategoryId;
                     content.Title = contentViewModel.Title;
+                    content.Slug = contentViewModel.Slug;
                     content.Excerpt = contentViewModel.Excerpt;
                     content.Text = contentViewModel.Text;
                     content.IsActive = contentViewModel.IsActive;

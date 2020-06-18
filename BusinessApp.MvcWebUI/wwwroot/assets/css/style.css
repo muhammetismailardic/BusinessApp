@@ -770,6 +770,7 @@ section {
   color: #fff;
   font-weight: 600;
   color: #2b2320;
+  display: inline;
 }
 
 .portfolio .portfolio-item .portfolio-info p {
@@ -782,8 +783,9 @@ section {
   position: absolute;
   right: 40px;
   font-size: 24px;
-  top: calc(50% - 18px);
+  top: calc(22% - 18px);
   color: #483b36;
+  display: inline;
 }
 
 .portfolio .portfolio-item .portfolio-info .preview-link, .portfolio .portfolio-item .portfolio-info .details-link {
