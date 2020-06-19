@@ -80,7 +80,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
 
 
         // GET: Contents/Details/5
-        //[Route("/Contents/{id:int}")]
+        [Route("/Content/Details/{id:int}-{IsFrontSideDetails:bool}")]
         [Route("{slug}-{id:int}")]
         public async Task<IActionResult> Details(int? id, bool IsFrontSideDetails = true)
         {

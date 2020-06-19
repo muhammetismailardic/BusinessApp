@@ -62,10 +62,10 @@ namespace BusinessApp.CarpetWash.DataAccess.Concrete.EntityFramework
                       .HasMaxLength(255);
 
                 entity.Property(e => e.CreatedAt)
-                     .HasColumnType("Date");
+                     .HasColumnType("datetime2");
 
                 entity.Property(e => e.UpdatedAt)
-                     .HasColumnType("Date");
+                     .HasColumnType("datetime2");
 
                 entity.HasOne(e => e.User)
                      .WithMany(e => e.Categories)
@@ -94,10 +94,10 @@ namespace BusinessApp.CarpetWash.DataAccess.Concrete.EntityFramework
                       .HasColumnType("text");
 
                 entity.Property(e => e.CreatedAt)
-                     .HasColumnType("Date");
+                     .HasColumnType("datetime2");
 
                 entity.Property(e => e.UpdatedAt)
-                    .HasColumnType("Date");
+                    .HasColumnType("datetime2");
 
                 entity.HasOne(e => e.Content)
                      .WithMany(e => e.Comments)
@@ -140,10 +140,10 @@ namespace BusinessApp.CarpetWash.DataAccess.Concrete.EntityFramework
                       .HasColumnType("text");
 
                 entity.Property(e => e.CreatedAt)
-                      .HasColumnType("Date");
+                      .HasColumnType("datetime2");
 
                 entity.Property(e => e.UpdatedAt)
-                      .HasColumnType("Date");
+                      .HasColumnType("datetime2");
 
                 entity.HasOne(e => e.User)
                       .WithMany(e => e.Contents)
@@ -174,10 +174,10 @@ namespace BusinessApp.CarpetWash.DataAccess.Concrete.EntityFramework
                       .HasColumnType("text");
 
                 entity.Property(e => e.CreatedAt)
-                     .HasColumnType("Date");
+                     .HasColumnType("datetime2");
 
                 entity.Property(e => e.UpdatedAt)
-                    .HasColumnType("Date");
+                    .HasColumnType("datetime2");
 
                 entity.HasOne(e => e.Content)
                       .WithMany(e => e.Tags)
@@ -206,10 +206,10 @@ namespace BusinessApp.CarpetWash.DataAccess.Concrete.EntityFramework
                       .HasColumnType("text");
 
                 entity.Property(e => e.CreatedAt)
-                                     .HasColumnType("Date");
+                                     .HasColumnType("datetime2");
 
                 entity.Property(e => e.UpdatedAt)
-                                      .HasColumnType("Date");
+                                      .HasColumnType("datetime2");
             });
         }
         private void BuildBannerModel(ModelBuilder modelBuilder)
@@ -232,10 +232,10 @@ namespace BusinessApp.CarpetWash.DataAccess.Concrete.EntityFramework
                       .HasMaxLength(64);
 
                 entity.Property(e => e.CreatedAt)
-                     .HasColumnType("Date");
+                     .HasColumnType("datetime2");
 
                 entity.Property(e => e.UpdatedAt)
-                     .HasColumnType("Date");
+                     .HasColumnType("datetime2");
 
                 entity.HasOne(d => d.User)
                      .WithMany(p => p.Banners)

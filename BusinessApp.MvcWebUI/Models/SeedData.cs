@@ -33,7 +33,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Models
             string userName = "Admin";
             string userId = "bc68af64-5675-4a5b-b6b2-92b2fd282cbf";
 
-            AddUserToRole(serviceProvider, adminUserEmail, userName, userId, adminPwd, adminRoleName);
+            AddUser(serviceProvider, adminUserEmail, userName, userId, adminPwd, adminRoleName);
             AddCategory(serviceProvider, context);
             AddBanner(serviceProvider, context);
             AddContent(serviceProvider, context);
@@ -71,7 +71,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Models
         /// <param name="userEmail">User Email</param>
         /// <param name="userPwd">User Password. Used to create the user if not exists.</param>
         /// <param name="roleName">Role Name</param>
-        private static void AddUserToRole(IServiceProvider serviceProvider, string userEmail, string userName, string userId, string userPwd, string roleName)
+        private static void AddUser(IServiceProvider serviceProvider, string userEmail, string userName, string userId, string userPwd, string roleName)
         {
             var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
 
@@ -87,6 +87,8 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Models
                     Id = userId,
                     Email = userEmail,
                     UserName = userName,
+                    Biography = "Gürpak Halı Yıkama Hizmetleri reklam sorumlusu ",
+                    Image = "admin-image.jpg",
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
                 };
