@@ -153,7 +153,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Models
                         Title = "Halı Yıkama",
                         Slug = "hali-yikama",
                         Type = ContentType.Service,
-                        Excerpt = 
+                        Excerpt =
                         " Süper 3 aşamalı halı yıkama" +
                         " hizmeti metodu ile halılarınızı" +
                         " istenilen temizliğe ulaştırır.",

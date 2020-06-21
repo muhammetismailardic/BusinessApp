@@ -98,13 +98,13 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
             try
             {
                 //TODO: This will be deleted later.
-                var user =  _userManager.FindByNameAsync(loginViewModel.UserName).Result;
+                var user = _userManager.FindByNameAsync(loginViewModel.UserName).Result;
                 var role = _userManager.GetRolesAsync(user).Result.SingleOrDefault();
 
                 if (ModelState.IsValid)
                 {
                     //TODO: This condition will be deleted.
-                    if(role == "Administrator") 
+                    if (role == "Administrator")
                     {
                         var result = _signInManager.PasswordSignInAsync(loginViewModel.UserName,
                         loginViewModel.Password, loginViewModel.RememberMe, loginViewModel.RememberMe).Result;
@@ -139,7 +139,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         public ActionResult LogOut()
         {
             _signInManager.SignOutAsync().Wait();
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

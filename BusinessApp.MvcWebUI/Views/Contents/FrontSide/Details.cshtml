@@ -94,17 +94,17 @@
 
                     <div class="blog-comments" data-aos="fade-up">
 
-                       <div class="reply-form">
+                        <div class="reply-form">
                             <h4>Yorumunuz..</h4>
                             <p> İşaretli bölgeleri doldurunuz!. * </p>
 
-                             @{
+                            @{
                                 if (SignInManager.IsSignedIn(User))
                                 {
                                     <form role="form" asp-controller="Comment" asp-action="Create">
                                         <div class="row">
-                                            <input name="ContentId" class="form-control"  value="@Model.Id" type="hidden">
-                                            <input name="UserId" class="form-control"  value="@Model.UserId" type="hidden">
+                                            <input name="ContentId" class="form-control" value="@Model.Id" type="hidden">
+                                            <input name="UserId" class="form-control" value="@Model.UserId" type="hidden">
                                             <input name="IsAnonymous" class="form-control" value="False" type="hidden">
                                             <input name="Email" class="form-control" value="@Model.User.Email" type="hidden">
                                             <input name="Name" class="form-control" value="@Model.User.UserName" type="hidden">
@@ -122,7 +122,7 @@
                                 {
                                     <form role="form" asp-controller="Comment" asp-action="Create">
                                         <div class="row">
-                                            <input name="ContentId" class="form-control"  value="@Model.Id" type="hidden">
+                                            <input name="ContentId" class="form-control" value="@Model.Id" type="hidden">
                                             <input name="IsAnonymous" class="form-control" value="True" type="hidden">
                                         </div>
                                         <div class="row">
@@ -142,23 +142,23 @@
                                     </form>
                                 }
                             }
-                        </div><br>     
+                        </div><br>
 
                         <h4 class="comments-count">@Model.Comments.Count Yorum</h4>
 
                         @foreach (var item in @Model.Comments)
                         {
-                            var userPic = @item.User != null ? (@item.User.Image == null ? "anonymous.jpg" : @item.User.Image ) : "anonymous.jpg";
+                            var userPic = @item.User != null ? (@item.User.Image == null ? "anonymous.jpg" : @item.User.Image) : "anonymous.jpg";
 
                             <div id="comment-@item.Id" class="comment clearfix">
-                            <img src="~/images/users/@userPic" class="comment-img  float-left" alt="">
-                            <h5><a href="#">@item.Name</a> </h5>
-                            <time datetime="2020-01-01">@item.UpdatedAt</time>
-                            <p>
-                                @item.Text
-                            </p>
+                                <img src="~/images/users/@userPic" class="comment-img  float-left" alt="">
+                                <h5><a href="#">@item.Name</a> </h5>
+                                <time datetime="2020-01-01">@item.UpdatedAt</time>
+                                <p>
+                                    @item.Text
+                                </p>
 
-                        </div><!-- End comment #1 -->
+                            </div><!-- End comment #1 -->
                         }
                     </div><!-- End blog comments -->
 

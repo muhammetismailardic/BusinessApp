@@ -56,7 +56,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                 };
 
                 await _commentService.CreateAsync(comment);
-                return RedirectToAction("Details", "Contents", new { Id = commentViewModel.ContentId, IsFrontSideDetails = true });
+                return RedirectToAction("Details", "Contents", new { Id = commentViewModel.ContentIdmo});
             }
             return RedirectToAction("Details", "Contents", new { Id = commentViewModel.ContentId, IsFrontSideDetails = true });
         }
@@ -101,7 +101,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         //         category.Name = categoryViewModel.Name;
         //         category.CreatedAt = categoryViewModel.CreatedAt;
         //         category.UpdatedAt = DateTime.Today;
-                
+
         //         if (categoryViewModel.ProfileImage != null)
         //         {
         //             uniqueFileName = fileExtentions.UploadedFile(categoryViewModel.ProfileImage, "category");
