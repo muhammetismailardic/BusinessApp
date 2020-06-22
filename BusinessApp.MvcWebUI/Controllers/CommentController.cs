@@ -56,7 +56,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                 };
 
                 await _commentService.CreateAsync(comment);
-                return RedirectToAction("Details", "Contents", new { Id = commentViewModel.ContentIdmo});
+                return RedirectToAction("Details", "Contents", new { Id = commentViewModel.ContentId});
             }
             return RedirectToAction("Details", "Contents", new { Id = commentViewModel.ContentId, IsFrontSideDetails = true });
         }
