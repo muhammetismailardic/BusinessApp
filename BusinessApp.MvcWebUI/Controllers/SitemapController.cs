@@ -18,7 +18,7 @@ namespace BusinessApp.MvcWebUI.Controllers
         [Route("sitemap")]
         public async Task<ActionResult> SitemapAsync()
         {
-            string baseUrl = "http://localhost:5000/";
+            string baseUrl = "http://localhost:58256/";
 
             // get a list of published articles
             var contents = await _contentService.GetAllContentsAsync(ContentType.All);
@@ -32,7 +32,7 @@ namespace BusinessApp.MvcWebUI.Controllers
             // add the blog posts to the sitemap
             foreach (var content in contents)
             {
-                siteMapBuilder.AddUrl(baseUrl + content.Slug, modified: content.UpdatedAt, changeFrequency: ChangeFrequency.Weekly, priority: 0.9);
+                siteMapBuilder.AddUrl(baseUrl + content.Slug + "-" + content.Id, modified: content.UpdatedAt, changeFrequency: ChangeFrequency.Weekly, priority: 0.9);
             }
 
             // generate the sitemap xml
