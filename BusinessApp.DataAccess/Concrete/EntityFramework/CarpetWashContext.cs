@@ -122,10 +122,10 @@ namespace BusinessApp.CarpetWash.DataAccess.Concrete.EntityFramework
                 entity.Property(e => e.Title)
                       .HasMaxLength(250)
                       .HasColumnType("text");
-                  
-                  entity.Property(e => e.Slug)
-                      .HasMaxLength(250)
-                      .HasColumnType("text");
+
+                entity.Property(e => e.Slug)
+                    .HasMaxLength(250)
+                    .HasColumnType("text");
 
                 entity.Property(e => e.Text)
                       .HasMaxLength(1024)

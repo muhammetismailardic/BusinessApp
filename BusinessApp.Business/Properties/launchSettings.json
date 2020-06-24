@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "BusinessApp.CarpetWash.Business": {
+      "commandName": "Project"
+    }
+  }
+}
