@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using BusinessApp.CarpetWash.DataAccess.Concrete.EntityFramework;
 using BusinessApp.CarpetWash.Entities.Concrete;
 using BusinessApp.CarpetWash.Business.Abstract;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
 {
+    [Authorize]
     public class TagsController : Controller
     {
         private readonly ITagService _tagService;

@@ -12,19 +12,24 @@ using Microsoft.AspNetCore.Identity;
 using BusinessApp.CarpetWash.MvcWebUI.Models;
 using Microsoft.AspNetCore.Hosting;
 using BusinessApp.CarpetWash.MvcWebUI.Shared;
+using BusinessApp.CarpetWash.Entities.Concrete.Enums;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
 {
+    [Authorize]
     public class BannersController : Controller
     {
         private readonly IBannerService _bannerService;
+        private readonly IContentService _contentService;
         private readonly UserManager<User> _userManager;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private FileExtentions fileExtentions;
 
-        public BannersController(IBannerService bannerService, UserManager<User> userManager, IWebHostEnvironment webHostEnvironment)
+        public BannersController(IBannerService bannerService, UserManager<User> userManager, IWebHostEnvironment webHostEnvironment, IContentService contentService)
         {
             _bannerService = bannerService;
+            _contentService = contentService;
             _userManager = userManager;
             _webHostEnvironment = webHostEnvironment;
             fileExtentions = new FileExtentions(_webHostEnvironment);
@@ -56,9 +61,16 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         //}
 
         //// GET: Banners/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View(new BannerViewModel());
+            var contents = await _contentService.GetAllContentsAsync(ContentType.All);
+
+            var banner = new BannerViewModel()
+            {
+                ContentList = new SelectList(contents, "Id", "Title"),
+            };
+
+            return View(banner);
         }
 
         //// POST: Banners/Create
@@ -66,7 +78,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         //// more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserId,CurrentImage,ProfileImage,Title,SubTitle,BtnTitle,IsActive,CreatedAt")] BannerViewModel bannerViewModel)
+        public async Task<IActionResult> Create([Bind("Id,UserId,ContentId,CurrentImage,ProfileImage,Title,SubTitle,BtnTitle,IsActive,CreatedAt")] BannerViewModel bannerViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -77,6 +89,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                 {
                     Id = bannerViewModel.Id,
                     UserId = user.Id,
+                    ContentId = bannerViewModel.ContentId,
                     Image = uniqueFileName != null ? uniqueFileName : null,
                     Title = bannerViewModel.Title,
                     SubTitle = bannerViewModel.SubTitle,
@@ -99,18 +112,21 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                 return NotFound();
             }
 
+            var contents = await _contentService.GetAllContentsAsync(ContentType.All);
             var banner = await _bannerService.FindBannerByIdAsync(id);
 
             var bannerViewModel = new BannerViewModel()
             {
                 Id = banner.Id,
                 UserId = banner.UserId,
-                CreatedAt = banner.CreatedAt,
+                ContentId = banner.ContentId,
                 Title = banner.Title,
                 BtnTitle = banner.BtnTitle,
                 CurrentImage = banner.Image,
                 IsActive = banner.IsActive,
                 SubTitle = banner.SubTitle,
+                CreatedAt = banner.CreatedAt,
+                ContentList = new SelectList(contents, "Id", "Title")
             };
 
             if (banner == null)
@@ -125,7 +141,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         //// more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,CurrentImage,ProfileImage,Title,SubTitle,BtnTitle,IsActive,CreatedAt,UpdatedAt")] BannerViewModel bannerViewModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,ContentId,CurrentImage,ProfileImage,Title,SubTitle,BtnTitle,IsActive,CreatedAt,UpdatedAt")] BannerViewModel bannerViewModel)
         {
             if (id != bannerViewModel.Id)
             {
@@ -141,6 +157,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                 {
                     banner.Id = bannerViewModel.Id;
                     banner.UserId = user.Id;
+                    banner.ContentId = bannerViewModel.ContentId;
                     banner.Title = bannerViewModel.Title;
                     banner.BtnTitle = bannerViewModel.BtnTitle;
                     banner.SubTitle = bannerViewModel.SubTitle;

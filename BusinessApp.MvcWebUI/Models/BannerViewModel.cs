@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,6 +12,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Models
     {
         public int Id { get; set; }
         public string UserId { get; set; }
+        public int ContentId { get; set; }
         public string CurrentImage { get; set; }
 
         [Display(Name = "Profile Picture")]
@@ -21,5 +23,6 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Models
         public bool IsActive { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+        public SelectList ContentList { get; set; }
     }
 }

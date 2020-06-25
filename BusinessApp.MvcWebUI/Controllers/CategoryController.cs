@@ -12,9 +12,11 @@ using BusinessApp.CarpetWash.MvcWebUI.Models;
 using BusinessApp.CarpetWash.MvcWebUI.Shared;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;
@@ -123,7 +125,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                 category.Name = categoryViewModel.Name;
                 category.CreatedAt = categoryViewModel.CreatedAt;
                 category.UpdatedAt = DateTime.Today;
-                
+
                 if (categoryViewModel.ProfileImage != null)
                 {
                     uniqueFileName = fileExtentions.UploadedFile(categoryViewModel.ProfileImage, "category");
@@ -181,7 +183,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         {
             var categoryImage = (await _categoryService.FindCategoryByIdAsync(id)).Image;
 
-            if(categoryImage != null) 
+            if (categoryImage != null)
             {
                 //Old Image Delete operation goes here
                 var directory = fileExtentions._rootImageDirectory + "/category/" + categoryImage;

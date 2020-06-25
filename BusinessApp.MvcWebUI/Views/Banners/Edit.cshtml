@@ -13,7 +13,7 @@
                 <input type="hidden" asp-for="UserId" />
                 <input type="hidden" asp-for="CreatedAt" />
                 <input type="hidden" asp-for="CurrentImage" class="form-control" />
-                
+
                 <div class="form-group">
                     <label asp-for="Title" class="control-label"></label>
                     <input asp-for="Title" class="form-control" />
@@ -29,6 +29,12 @@
                     <input asp-for="BtnTitle" class="form-control" />
                     <span asp-validation-for="BtnTitle" class="text-danger"></span>
                 </div>
+
+                <div class="form-group">
+                    <label asp-for="ProfileImage">Choose file</label>
+                    <input asp-for="ProfileImage">
+                </div>
+
                 <div class="form-group form-check">
                     <label class="form-check-label">
                         <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
@@ -36,8 +42,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="ProfileImage">Choose file</label>
-                    <input asp-for="ProfileImage">
+                    <label class="control-label">Select Related Content</label>
+                    <select asp-for="ContentId" class="form-control" asp-items="Model.ContentList"></select>
                 </div>
 
                 <div class="form-group">

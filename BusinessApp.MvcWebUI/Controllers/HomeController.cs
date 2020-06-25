@@ -15,7 +15,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         IBannerService _bannerService;
 
         ICommentService _commentService;
-        public HomeController(IContentService contentService, IBannerService bannerService ,ICommentService commentService)
+        public HomeController(IContentService contentService, IBannerService bannerService, ICommentService commentService)
         {
             _contetService = contentService;
             _bannerService = bannerService;
@@ -33,7 +33,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                 Services = contents.Where(x => x.Type == ContentType.Service),
                 Posts = contents.Where(x => x.Type == ContentType.Post),
                 ServiceRegion = contents.Where(x => x.Type == ContentType.ServiceRegion),
-                Comments = comments.Take(2).OrderByDescending(x=> x.CreatedAt)
+                Comments = comments.OrderByDescending(x => x.CreatedAt).Take(2)
             };
             return View(content);
         }

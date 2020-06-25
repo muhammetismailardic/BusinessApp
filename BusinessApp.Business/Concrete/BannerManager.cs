@@ -25,7 +25,7 @@ namespace BusinessApp.CarpetWash.Business.Concrete
             }
             catch (Exception ex)
             {
-                
+
                 throw;
             }
         }
@@ -41,7 +41,7 @@ namespace BusinessApp.CarpetWash.Business.Concrete
 
                 throw;
             }
-            
+
         }
 
         public async Task<Banner> FindBannerByIdAsync(int? bannerId)
@@ -61,7 +61,7 @@ namespace BusinessApp.CarpetWash.Business.Concrete
         {
             try
             {
-                return await _bannerDal.GetListWithIncludesAsync(null, c=> c.Include(con => con.User));
+                return await _bannerDal.GetListWithIncludesAsync(null, c => c.Include(con => con.User));
             }
             catch (Exception ex)
             {

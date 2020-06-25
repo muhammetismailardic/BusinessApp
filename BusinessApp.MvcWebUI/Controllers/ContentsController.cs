@@ -14,9 +14,11 @@ using BusinessApp.CarpetWash.MvcWebUI.Models;
 using BusinessApp.CarpetWash.MvcWebUI.Shared;
 using Microsoft.AspNetCore.Hosting;
 using System.Security.Cryptography.X509Certificates;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
 {
+    [Authorize]
     public class ContentsController : Controller
     {
         private readonly IContentService _contentService;
