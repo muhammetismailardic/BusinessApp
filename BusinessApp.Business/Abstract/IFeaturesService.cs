@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace BusinessApp.CarpetWash.Business.Abstract
 {
-    public interface IContentService
+    public interface IFeaturesService
     {
-        Task CreateAsync(Content content);
-        Task UpdateAsync(Content content);
-        Task DeleteAsync(int contentId);
-        Task<ICollection<Content>> GetAllContentsAsync(ContentType type);
-        Task<Content> FindContentByIdAsync(int? contentId);
+        Task CreateAsync(Feature feature);
+        Task UpdateAsync(Feature feature);
+        Task DeleteAsync(int featureId);
+        Task<ICollection<Feature>> GetAllFeaturesAsync();
+        Task<Feature> FindFeatureByIdAsync(int? FeatureId);
         Task<bool> Exist(int id);
     }
 }

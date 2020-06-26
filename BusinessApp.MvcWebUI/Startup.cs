@@ -17,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using BusinessApp.CarpetWash.MvcWebUI.Data;
 
 namespace BusinessApp.MvcWebUI
 {
@@ -62,6 +63,9 @@ namespace BusinessApp.MvcWebUI
             services.AddAuthorization();
 
             services.AddRazorPages();
+
+            services.AddDbContext<BusinessAppCarpetWashMvcWebUIContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("BusinessAppCarpetWashMvcWebUIContext")));
 
             ////Adding Session
             //services.AddSession();

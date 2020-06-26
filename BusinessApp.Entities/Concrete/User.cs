@@ -13,8 +13,9 @@ namespace BusinessApp.CarpetWash.Entities.Concrete
             Banners = new HashSet<Banner>();
             Comments = new HashSet<Comment>();
             Categories = new HashSet<Category>();
+            Features = new HashSet<Feature>();
         }
-        public string  Name { get; set; }
+        public string Name { get; set; }
         public string Surname { get; set; }
         public string Image { get; set; }
         public string Biography { get; set; }
@@ -24,5 +25,6 @@ namespace BusinessApp.CarpetWash.Entities.Concrete
         public ICollection<Banner> Banners { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public ICollection<Category> Categories { get; set; }
+        public ICollection<Feature> Features { get; set; }
     }
 }
