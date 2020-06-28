@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusinessApp.CarpetWash.Business.Abstract
 {
-    public interface IFeaturesService
+    public interface IFeatureService
     {
         Task CreateAsync(Feature feature);
         Task UpdateAsync(Feature feature);

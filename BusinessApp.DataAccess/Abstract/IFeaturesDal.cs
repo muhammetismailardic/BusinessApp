@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BusinessApp.CarpetWash.DataAccess.Abstract
 {
-    public interface IFeaturesDal : IEntityRepository<Feature>
+    public interface IFeatureDal : IEntityRepository<Feature>
     {
     }
 }

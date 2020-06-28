@@ -7,7 +7,7 @@ using System.Text;
 
 namespace BusinessApp.CarpetWash.DataAccess.Concrete.EntityFramework
 {
-    public class EfFeaturesDal : EfEntityRepositoryBase<Feature, CarpetWashContext>, IFeaturesDal
+    public class EfFeatureDal : EfEntityRepositoryBase<Feature, CarpetWashContext>, IFeatureDal
     {
     }
 }

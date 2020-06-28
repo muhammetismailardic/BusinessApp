@@ -2,83 +2,64 @@
 
 @{
     ViewData["Title"] = "Edit";
+    Layout = "_AdminLayout";
 }
 
-<h1>Edit</h1>
+<!-- Basic form -->
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <header class="panel-heading">Update New @Model.Type</header>
+        <div class="panel-body">
 
-<h4>Feature</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Excerpt" class="control-label"></label>
-                <input asp-for="Excerpt" class="form-control" />
-                <span asp-validation-for="Excerpt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FeatureTitles" class="control-label"></label>
-                <input asp-for="FeatureTitles" class="form-control" />
-                <span asp-validation-for="FeatureTitles" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FeatureDetails" class="control-label"></label>
-                <input asp-for="FeatureDetails" class="form-control" />
-                <span asp-validation-for="FeatureDetails" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Image" class="control-label"></label>
-                <input asp-for="Image" class="form-control" />
-                <span asp-validation-for="Image" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Longitude" class="control-label"></label>
-                <input asp-for="Longitude" class="form-control" />
-                <span asp-validation-for="Longitude" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Latitude" class="control-label"></label>
-                <input asp-for="Latitude" class="form-control" />
-                <span asp-validation-for="Latitude" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Type" class="control-label"></label>
-                <select asp-for="Type" class="form-control"></select>
-                <span asp-validation-for="Type" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedAt" class="control-label"></label>
-                <input asp-for="CreatedAt" class="form-control" />
-                <span asp-validation-for="CreatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UpdatedAt" class="control-label"></label>
-                <input asp-for="UpdatedAt" class="form-control" />
-                <span asp-validation-for="UpdatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+            <form asp-action="Edit">
+
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="Type" />
+                <input type="hidden" asp-for="UserId" />
+                <input type="hidden" asp-for="Image" />
+
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Excerpt" class="control-label"></label>
+                    <input asp-for="Excerpt" class="form-control" />
+                    <span asp-validation-for="Excerpt" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FeatureTitles" class="control-label"></label>
+                    <input asp-for="FeatureTitles" class="form-control" />
+                    <span asp-validation-for="FeatureTitles" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FeatureDetails" class="control-label"></label>
+                    <input asp-for="FeatureDetails" class="form-control" />
+                    <span asp-validation-for="FeatureDetails" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Longitude" class="control-label"></label>
+                    <input asp-for="Longitude" class="form-control" />
+                    <span asp-validation-for="Longitude" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Latitude" class="control-label"></label>
+                    <input asp-for="Latitude" class="form-control" />
+                    <span asp-validation-for="Latitude" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label name="updateImage">Choose file</label>
+                    <input name="updateImage">
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <a asp-action="Index">Back to List</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

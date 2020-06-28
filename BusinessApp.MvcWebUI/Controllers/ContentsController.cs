@@ -26,7 +26,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         private readonly ITagService _tagService;
         private readonly UserManager<User> _userManager;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private FileExtentions fileExtentions;
+        private FileExtentions _fileExtentions;
 
         public ContentsController(IContentService contentService, ICategoryService categoryService, UserManager<User> userManager, IWebHostEnvironment webHostEnvironment, ITagService tagService)
         {
@@ -35,7 +35,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
             _userManager = userManager;
             _tagService = tagService;
             _webHostEnvironment = webHostEnvironment;
-            fileExtentions = new FileExtentions(_webHostEnvironment);
+            _fileExtentions = new FileExtentions(_webHostEnvironment);
         }
 
         // GET: Contents
@@ -128,7 +128,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
             string[] tagsarray;
             if (ModelState.IsValid)
             {
-                string uniqueFileName = fileExtentions.UploadedFile(contentViewModel.ProfileImage, "content");
+                string uniqueFileName = _fileExtentions.UploadedFile(contentViewModel.ProfileImage, "content");
 
                 var content = new Content()
                 {
@@ -144,7 +144,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                     Title = contentViewModel.Title,
                     Slug = contentViewModel.Slug,
                     UserId = contentViewModel.UserId,
-                    VisitCount = 0
+                    VisitCount = 1453
                 };
                 await _contentService.CreateAsync(content);
 
@@ -170,6 +170,8 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         //// GET: Contents/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            // TODO: This code can be more simplified by eliminating Categories Feature..
+
             if (id == null)
             {
                 return NotFound();
@@ -239,16 +241,17 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                     if (contentViewModel.ProfileImage != null)
                     {
                         //Old Image Delete operation goes here
-                        var directory = fileExtentions._rootImageDirectory + "/content/" + content.Image;
-                        fileExtentions.DeleteFile(directory);
+                        var directory = _fileExtentions._rootImageDirectory + "/content/" + content.Image;
+                        _fileExtentions.DeleteFile(directory);
 
                         //Adding newly added image to directory.
-                        uniqueFileName = fileExtentions.UploadedFile(contentViewModel.ProfileImage, "content");
+                        uniqueFileName = _fileExtentions.UploadedFile(contentViewModel.ProfileImage, "content");
                         content.Image = uniqueFileName;
                     }
 
                     await _contentService.UpdateAsync(content);
-                    // This can be change later.
+
+                    //TODO: This can be change later.
                     if (!string.IsNullOrEmpty(tags))
                     {
                         tagsarray = tags.Split(',');
@@ -305,8 +308,8 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
             if (content.Image != null)
             {
                 //Old Image Delete operation goes here
-                var directory = fileExtentions._rootImageDirectory + "/content/" + content.Image;
-                fileExtentions.DeleteFile(directory);
+                var directory = _fileExtentions._rootImageDirectory + "/content/" + content.Image;
+                _fileExtentions.DeleteFile(directory);
             }
 
             await _tagService.DeleteByContentId(id);

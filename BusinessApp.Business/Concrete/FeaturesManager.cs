@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace BusinessApp.CarpetWash.Business.Concrete
 {
-    public class FeaturesManager : IFeaturesService
+    public class FeatureManager : IFeatureService
     {
-        private IFeaturesDal _featureDal;
-        public FeaturesManager(IFeaturesDal featureDal)
+        private IFeatureDal _featureDal;
+        public FeatureManager(IFeatureDal featureDal)
         {
             _featureDal = featureDal;
         }

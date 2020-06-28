@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-
+@using BusinessApp.CarpetWash.Entities.Concrete.Enums
 <html>
 <head>
     <meta charset="utf-8">
@@ -56,8 +56,8 @@
                     <div class="sidebar-link-addon"><i class="typcn typcn-plus"></i></div>
                     <!-- Sidebar submenu -->
                     <ul class="sidebar-submenu">
-                        <li><a asp-controller="Contents" asp-action="Index" asp-route-type="@BusinessApp.CarpetWash.Entities.Concrete.Enums.ContentType.Post">All Posts</a></li>
-                        <li><a asp-controller="Contents" asp-action="Create" asp-route-type="@BusinessApp.CarpetWash.Entities.Concrete.Enums.ContentType.Post">Add New</a></li>
+                        <li><a asp-controller="Contents" asp-action="Index" asp-route-type="@ContentType.Post">All Posts</a></li>
+                        <li><a asp-controller="Contents" asp-action="Create" asp-route-type="@ContentType.Post">Add New</a></li>
                     </ul>
                     <!-- /Sidebar submenu -->
                 </li>
@@ -66,8 +66,8 @@
                     <div class="sidebar-link-addon"><i class="typcn typcn-plus"></i></div>
                     <!-- Sidebar submenu -->
                     <ul class="sidebar-submenu">
-                        <li><a asp-controller="Contents" asp-action="Index" asp-route-type="@BusinessApp.CarpetWash.Entities.Concrete.Enums.ContentType.Service">All Services</a></li>
-                        <li><a asp-controller="Contents" asp-action="Create" asp-route-type="@BusinessApp.CarpetWash.Entities.Concrete.Enums.ContentType.Service">Add New</a></li>
+                        <li><a asp-controller="Contents" asp-action="Index" asp-route-type="@ContentType.Service">All Services</a></li>
+                        <li><a asp-controller="Contents" asp-action="Create" asp-route-type="@ContentType.Service">Add New</a></li>
                     </ul>
                     <!-- /Sidebar submenu -->
                 </li>
@@ -77,8 +77,8 @@
                     <div class="sidebar-link-addon"><i class="typcn typcn-plus"></i></div>
                     <!-- Sidebar submenu -->
                     <ul class="sidebar-submenu">
-                        <li><a asp-controller="Contents" asp-action="Index" asp-route-type="@BusinessApp.CarpetWash.Entities.Concrete.Enums.ContentType.ServiceRegion">All Regions</a></li>
-                        <li><a asp-controller="Contents" asp-action="Create" asp-route-type="@BusinessApp.CarpetWash.Entities.Concrete.Enums.ContentType.ServiceRegion">Add New</a></li>
+                        <li><a asp-controller="Contents" asp-action="Index" asp-route-type="@ContentType.ServiceRegion">All Regions</a></li>
+                        <li><a asp-controller="Contents" asp-action="Create" asp-route-type="@ContentType.ServiceRegion">Add New</a></li>
                     </ul>
                     <!-- /Sidebar submenu -->
                 </li>
@@ -110,6 +110,18 @@
                     <ul class="sidebar-submenu">
                         <li><a asp-controller="Banners" asp-action="Index">All Banners</a></li>
                         <li><a asp-controller="Banners" asp-action="Create">Add New</a></li>
+                    </ul>
+                    <!-- /Sidebar submenu -->
+                </li>
+                <li class="has-submenu">
+                    <a href="#"><i class="typcn typcn-document-text"></i> <span>Features</span></a>
+                    <div class="sidebar-link-addon"><i class="typcn typcn-plus"></i></div>
+                    <!-- Sidebar submenu -->
+                    <ul class="sidebar-submenu">
+                        <li><a asp-controller="Feature" asp-action="Index">All Features</a></li>
+                        <li><a asp-controller="Feature" asp-action="Create" asp-route-type="@ContentType.HomeFeature">Add Home Feature</a></li>
+                        <li><a asp-controller="Feature" asp-action="Create" asp-route-type="@ContentType.AboutFeature">Add About Feature</a></li>
+                        <li><a asp-controller="Feature" asp-action="Create" asp-route-type="@ContentType.ContactFeature">Add Contact Feature</a></li>
                     </ul>
                     <!-- /Sidebar submenu -->
                 </li>

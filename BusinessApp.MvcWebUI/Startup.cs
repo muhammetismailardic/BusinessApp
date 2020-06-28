@@ -17,7 +17,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using BusinessApp.CarpetWash.MvcWebUI.Data;
 
 namespace BusinessApp.MvcWebUI
 {
@@ -45,13 +44,14 @@ namespace BusinessApp.MvcWebUI
             services.AddScoped<IContentDal, EfContentDal>();
             services.AddScoped<ITagService, TagManager>();
             services.AddScoped<ITagDal, EfTagDal>();
-            services.AddScoped<ITagService, TagManager>();
-            services.AddScoped<ITagDal, EfTagDal>();
+            services.AddScoped<IFeatureService, FeatureManager>();
+            services.AddScoped<IFeatureDal, EfFeatureDal>();
+            
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddDbContext<CarpetWashContext>(options =>
-                   options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")),
-                   ServiceLifetime.Scoped);
+                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")),
+                    ServiceLifetime.Scoped);
 
             //Adding Identity 
             services.AddIdentity<User, Role>()
@@ -63,9 +63,6 @@ namespace BusinessApp.MvcWebUI
             services.AddAuthorization();
 
             services.AddRazorPages();
-
-            services.AddDbContext<BusinessAppCarpetWashMvcWebUIContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("BusinessAppCarpetWashMvcWebUIContext")));
 
             ////Adding Session
             //services.AddSession();
