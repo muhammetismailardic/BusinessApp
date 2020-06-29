@@ -10,5 +10,6 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Models
         public IEnumerable<Content> Posts { get; internal set; }
         public IEnumerable<Content> ServiceRegion { get; internal set; }
         public IEnumerable<Comment> Comments { get; internal set; }
+        public Feature HomeFeature { get; internal set; }
     }
 }

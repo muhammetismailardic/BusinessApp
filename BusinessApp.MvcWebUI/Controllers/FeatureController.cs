@@ -22,7 +22,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         private readonly UserManager<User> _userManager;
         private FileExtentions _fileExtentions;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        
+
         public FeatureController(IFeatureService featureService, UserManager<User> userManager, IWebHostEnvironment webHostEnvironment)
         {
             _featureService = featureService;
@@ -75,8 +75,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserId,Title,Excerpt,FeatureTitles,FeatureDetails,ProfileImage,Longitude,Latitude,Type,CreatedAt,UpdatedAt")] FeatureViewModel featureViewModel
-            ,IFormFile ProfileImage)
+        public async Task<IActionResult> Create([Bind("Id,UserId,Title,Excerpt,FeatureTitles,FeatureDetails,ProfileImage,Longitude,Latitude,Type,CreatedAt,UpdatedAt")] FeatureViewModel featureViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -190,7 +189,15 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var feature = await _featureService.FindFeatureByIdAsync(id);
-            await _featureService.DeleteAsync(feature.Id);
+
+            if (feature.Image != null)
+            {
+                //Old Image Delete operation goes here
+                var directory = _fileExtentions._rootImageDirectory + "/features/" + feature.Image;
+                _fileExtentions.DeleteFile(directory);
+            }
+
+            await _featureService.DeleteAsync(id);
 
             return RedirectToAction(nameof(Index));
         }

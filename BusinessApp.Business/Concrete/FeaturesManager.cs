@@ -87,6 +87,14 @@ namespace BusinessApp.CarpetWash.Business.Concrete
             }
         }
 
+        public async Task<Feature> GetByFeatureType(ContentType type)
+        {
+
+            return await _featureDal.GetWithInludesAsync(
+                         x => x.Type == type,
+                         c=> c.Include(con=> con.User));
+        }
+
         public async Task UpdateAsync(Feature feature)
         {
             try

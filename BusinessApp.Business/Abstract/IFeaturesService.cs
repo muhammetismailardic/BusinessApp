@@ -13,6 +13,7 @@ namespace BusinessApp.CarpetWash.Business.Abstract
         Task UpdateAsync(Feature feature);
         Task DeleteAsync(int featureId);
         Task<ICollection<Feature>> GetAllFeaturesAsync();
+        Task<Feature> GetByFeatureType(ContentType type);
         Task<Feature> FindFeatureByIdAsync(int? FeatureId);
         Task<bool> Exist(int id);
     }

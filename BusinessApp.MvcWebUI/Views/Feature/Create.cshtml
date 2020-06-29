@@ -10,7 +10,7 @@
     <div class="panel panel-default">
         <header class="panel-heading">Create New @Model.Type</header>
         <div class="panel-body">
-            <form asp-action="Create">
+            <form asp-action="Create" enctype="multipart/form-data">
                 <input asp-for="Type" class="form-control" type="hidden" />
                 <input asp-for="UserId" class="form-control" type="hidden" />
 
@@ -28,8 +28,6 @@
 
                 @if (Model.Type == ContentType.AboutFeature || Model.Type == ContentType.HomeFeature)
                 {
-                    var fileType = "";
-
                     <div class="form-group">
                         <label asp-for="FeatureTitles" class="control-label"></label>
                         <input asp-for="FeatureTitles" class="form-control" />
@@ -40,11 +38,7 @@
                         <input asp-for="FeatureDetails" class="form-control" />
                         <span asp-validation-for="FeatureDetails" class="text-danger"></span>
                     </div>
-
-                    if (Model.Type == ContentType.AboutFeature)
-                    {
-                        fileType = "multipart/form-data";
-                    }
+                   
                     <div class="form-group">
                         <label asp-for="ProfileImage">Choose file</label>
                         <input asp-for="ProfileImage">
