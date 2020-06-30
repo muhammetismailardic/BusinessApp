@@ -248,7 +248,6 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                         uniqueFileName = _fileExtentions.UploadedFile(contentViewModel.ProfileImage, "content");
                         content.Image = uniqueFileName;
                     }
-
                     await _contentService.UpdateAsync(content);
 
                     //TODO: This can be change later.

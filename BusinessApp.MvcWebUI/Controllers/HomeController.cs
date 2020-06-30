@@ -45,9 +45,18 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> Contact()
+        public async Task<IActionResult> Contact(ContentType type)
         {
-            return View();
+
+            if (type == ContentType.ContactFeature)
+            {
+                var serviceByType = await _featureService.GetByFeatureType(type);
+
+                return View(serviceByType);
+            }
+
+            return RedirectToAction(nameof(Index));
+
         }
     }
 }

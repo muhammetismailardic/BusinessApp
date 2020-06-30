@@ -18,8 +18,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Models
         public string FeatureTitles { get; set; }
         public string FeatureDetails { get; set; }
         public string CurrentImage { get; set; }
-        public string Longitude { get; set; }
-        public string Latitude { get; set; }
+        public string Location { get; set; }
         public ContentType Type { get; set; }
         public DateTime CreatedAt { get; set; }
         public IFormFile ProfileImage { get; set; }

@@ -1,4 +1,5 @@
-﻿@model BusinessApp.CarpetWash.Entities.Concrete.Feature
+﻿@model BusinessApp.CarpetWash.MvcWebUI.Models.FeatureViewModel
+@using BusinessApp.CarpetWash.Entities.Concrete.Enums
 
 @{
     ViewData["Title"] = "Edit";
@@ -11,23 +12,28 @@
         <header class="panel-heading">Update New @Model.Type</header>
         <div class="panel-body">
 
-            <form asp-action="Edit">
+            <form asp-action="Edit" enctype="multipart/form-data">
 
                 <input type="hidden" asp-for="Id" />
                 <input type="hidden" asp-for="Type" />
                 <input type="hidden" asp-for="UserId" />
-                <input type="hidden" asp-for="Image" />
+                <input type="hidden" asp-for="CurrentImage" />
 
-                <div class="form-group">
-                    <label asp-for="Title" class="control-label"></label>
-                    <input asp-for="Title" class="form-control" />
-                    <span asp-validation-for="Title" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Excerpt" class="control-label"></label>
-                    <input asp-for="Excerpt" class="form-control" />
-                    <span asp-validation-for="Excerpt" class="text-danger"></span>
-                </div>
+                @if (Model.Type == ContentType.AboutFeature || Model.Type == ContentType.HomeFeature)
+                {
+                    <div class="form-group">
+                        <label asp-for="Title" class="control-label"></label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Excerpt" class="control-label"></label>
+                        <input asp-for="Excerpt" class="form-control" />
+                        <span asp-validation-for="Excerpt" class="text-danger"></span>
+                    </div>
+                }
+
                 <div class="form-group">
                     <label asp-for="FeatureTitles" class="control-label"></label>
                     <input asp-for="FeatureTitles" class="form-control" />
@@ -38,20 +44,24 @@
                     <input asp-for="FeatureDetails" class="form-control" />
                     <span asp-validation-for="FeatureDetails" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Longitude" class="control-label"></label>
-                    <input asp-for="Longitude" class="form-control" />
-                    <span asp-validation-for="Longitude" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Latitude" class="control-label"></label>
-                    <input asp-for="Latitude" class="form-control" />
-                    <span asp-validation-for="Latitude" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label name="updateImage">Choose file</label>
-                    <input name="updateImage">
-                </div>
+                @if (Model.Type == ContentType.AboutFeature || Model.Type == ContentType.HomeFeature)
+                {
+                    <div class="form-group">
+                        <label asp-for="ProfileImage">Choose file</label>
+                        <input asp-for="ProfileImage">
+                    </div>
+                }
+
+                @if (Model.Type == ContentType.ContactFeature)
+                {
+                    <div class="form-group">
+                        <label asp-for="Location" class="control-label"></label>
+                        <input asp-for="Location" class="form-control" />
+                        <span asp-validation-for="Location" class="text-danger"></span>
+                    </div>
+
+                }
+
                 <div class="form-group">
                     <input type="submit" value="Save" class="btn btn-primary" />
                     <a asp-action="Index">Back to List</a>
@@ -60,6 +70,3 @@
         </div>
     </div>
 </div>
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

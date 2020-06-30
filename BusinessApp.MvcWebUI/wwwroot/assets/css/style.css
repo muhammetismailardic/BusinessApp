@@ -902,11 +902,11 @@ section {
             margin-left: 60px;
         }
 
-.about-us .image {
+/*.about-us .image {
     background: url("../img/about.jpg") center center no-repeat;
     background-size: cover;
     min-height: 400px;
-}
+}*/
 
 @media (max-width: 991px) {
     .about-us .image {

@@ -75,7 +75,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserId,Title,Excerpt,FeatureTitles,FeatureDetails,ProfileImage,Longitude,Latitude,Type,CreatedAt,UpdatedAt")] FeatureViewModel featureViewModel)
+        public async Task<IActionResult> Create([Bind("Id,UserId,Title,Excerpt,FeatureTitles,FeatureDetails,ProfileImage,Location,Type,CreatedAt,UpdatedAt")] FeatureViewModel featureViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -90,8 +90,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                     FeatureTitles = featureViewModel.FeatureTitles,
                     FeatureDetails = featureViewModel.FeatureDetails,
                     Image = uniqueFileName != null ? uniqueFileName : null,
-                    Longitude = featureViewModel.Longitude != null ? featureViewModel.Longitude : null,
-                    Latitude = featureViewModel.Latitude != null ? featureViewModel.Latitude : null,
+                    Location = featureViewModel.Location != null ? featureViewModel.Location : null,
                     Type = featureViewModel.Type,
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
@@ -117,7 +116,21 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                 return NotFound();
             }
 
-            return View(feature);
+            var featureViewModel = new FeatureViewModel()
+            {
+                CreatedAt = feature.CreatedAt,
+                CurrentImage = feature.Image,
+                Excerpt = feature.Excerpt,
+                FeatureDetails = feature.FeatureDetails,
+                FeatureTitles = feature.FeatureTitles,
+                Id = feature.Id,
+                Location = feature.Location,
+                Title = feature.Title,
+                Type = feature.Type,
+                UserId = feature.UserId
+            };
+
+            return View(featureViewModel);
         }
 
         // POST: Feature/Edit/5
@@ -125,9 +138,9 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,Title,Excerpt,FeatureTitles,FeatureDetails,Image,Longitude,Latitude,Type,UpdatedAt")] Feature feature, IFormFile updateImage)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,Title,Excerpt,FeatureTitles,FeatureDetails,CurrentImage,ProfileImage,Location,Type,UpdatedAt")] FeatureViewModel featureViewModel)
         {
-            if (id != feature.Id)
+            if (id != featureViewModel.Id)
             {
                 return NotFound();
             }
@@ -136,22 +149,36 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
             {
                 try
                 {
-                    feature.UpdatedAt = DateTime.Now;
-                    if (updateImage != null)
+                    var feature = new Feature()
+                    {
+                        Id = featureViewModel.Id,
+                        UserId = featureViewModel.UserId,
+                        Title = featureViewModel.Title,
+                        Excerpt = featureViewModel.Excerpt,
+                        FeatureTitles = featureViewModel.FeatureTitles,
+                        FeatureDetails = featureViewModel.FeatureDetails,
+                        Image = featureViewModel.CurrentImage,
+                        Location = featureViewModel.Location,
+                        Type = featureViewModel.Type,
+                        CreatedAt = featureViewModel.CreatedAt,
+                        UpdatedAt = DateTime.Now
+                    };
+
+                    if (featureViewModel.ProfileImage != null)
                     {
                         //Old Image Delete operation goes here
                         var directory = _fileExtentions._rootImageDirectory + "/features/" + feature.Image;
                         _fileExtentions.DeleteFile(directory);
 
                         //Adding newly added image to directory.
-                        feature.Image = _fileExtentions.UploadedFile(updateImage, "features");
+                        feature.Image = _fileExtentions.UploadedFile(featureViewModel.ProfileImage, "features");
                     }
                     await _featureService.UpdateAsync(feature);
                 }
 
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!await FeatureExists(feature.Id))
+                    if (!await FeatureExists(featureViewModel.Id))
                     {
                         return NotFound();
                     }
@@ -160,9 +187,9 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index), new { type = feature.Type });
+                return RedirectToAction(nameof(Index));
             }
-            return View(feature);
+            return View(featureViewModel);
         }
 
         // GET: Feature/Delete/5
