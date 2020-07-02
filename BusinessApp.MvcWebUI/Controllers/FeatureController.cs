@@ -59,15 +59,21 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         // GET: Feature/Create
         public async Task<IActionResult> Create(ContentType type)
         {
-            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var result = await _featureService.GetByFeatureType(type);
 
-            var createFeature = new FeatureViewModel()
+            if (result == null)
             {
-                UserId = user.Id,
-                Type = type
-            };
+                var user = await _userManager.GetUserAsync(HttpContext.User);
+                var createFeature = new FeatureViewModel()
+                {
+                    UserId = user.Id,
+                    Type = type
+                };
 
-            return View(createFeature);
+                return View(createFeature);
+            }
+            return View(nameof(Index), await _featureService.GetAllFeaturesAsync());
+            // TODO: Here you will throw a warning message to user.
         }
 
         // POST: Feature/Create
@@ -79,7 +85,14 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                string uniqueFileName = _fileExtentions.UploadedFile(featureViewModel.ProfileImage, "features");
+                List<string> imageList = new List<string>();
+
+                foreach (var image in featureViewModel.ProfileImage)
+                {
+                    imageList.Add(_fileExtentions.UploadedFile(image, "features"));
+                }
+
+                string uniqueFileName = string.Join(",", imageList);
 
                 var feature = new Feature()
                 {
@@ -95,6 +108,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
                 };
+
                 await _featureService.CreateAsync(feature);
                 return RedirectToAction(nameof(Index), new { type = feature.Type });
             }
@@ -167,11 +181,20 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                     if (featureViewModel.ProfileImage != null)
                     {
                         //Old Image Delete operation goes here
-                        var directory = _fileExtentions._rootImageDirectory + "/features/" + feature.Image;
-                        _fileExtentions.DeleteFile(directory);
+                        string[] oldImages = feature.Image.Split(',');
+                        for (int i = 0; i < oldImages.Length; i++)
+                        {
+                            _fileExtentions.DeleteFile(_fileExtentions._rootImageDirectory + "/features/" + oldImages[i]);
+                        }
 
-                        //Adding newly added image to directory.
-                        feature.Image = _fileExtentions.UploadedFile(featureViewModel.ProfileImage, "features");
+                        //Adding newly created image(s) to directory.
+                        List<string> imageList = new List<string>();
+                        foreach (var image in featureViewModel.ProfileImage)
+                        {
+                            imageList.Add(_fileExtentions.UploadedFile(image, "features"));
+                        }
+
+                        feature.Image = string.Join(",", imageList);
                     }
                     await _featureService.UpdateAsync(feature);
                 }

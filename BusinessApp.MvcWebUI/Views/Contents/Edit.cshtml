@@ -1,4 +1,5 @@
 ﻿@model BusinessApp.CarpetWash.MvcWebUI.Models.ContentViewModel
+@using BusinessApp.CarpetWash.Entities.Concrete.Enums
 
 @{
     ViewData["Title"] = "Edit";
@@ -57,7 +58,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-success">Update @Model.Type</button>
-                <a asp-action="Index" class="btn btn-danger">Back to List</a>
+                <a asp-action="Index" asp-route-type="@Model.Type" class="btn btn-danger">Back to List</a>
             </form>
         </div>
     </div>

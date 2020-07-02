@@ -23,8 +23,18 @@
                 Blog
             </a>
         </li>
-        <li><a asp-controller="Home" asp-action="About">Hakkımızda</a></li>
-        <li><a asp-controller="Home" asp-action="Contact">İletişim</a></li>
+        <li>
+            <a asp-controller="Home" asp-action="About"
+               asp-route-type="@ContentType.AboutFeature">
+                Hakkımızda
+            </a>
+        </li>
+        <li>
+            <a asp-controller="Home" asp-action="Contact"
+               asp-route-type="@ContentType.ContactFeature">
+                İletişim
+            </a>
+        </li>
         @await Html.PartialAsync("~/Views/Shared/Partials/_LoginPartial.cshtml")
     </ul>
 </nav><!-- .nav-menu -->

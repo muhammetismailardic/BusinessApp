@@ -21,6 +21,6 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Models
         public string Location { get; set; }
         public ContentType Type { get; set; }
         public DateTime CreatedAt { get; set; }
-        public IFormFile ProfileImage { get; set; }
+        public List<IFormFile> ProfileImage { get; set; }
     }
 }

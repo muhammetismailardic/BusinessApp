@@ -41,10 +41,19 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
             return View(content);
         }
 
-        public async Task<IActionResult> About()
+        public async Task<IActionResult> About(ContentType type)
         {
-            return View();
+            if (type == ContentType.AboutFeature)
+            {
+                var serviceByType = await _featureService.GetByFeatureType(type);
+
+                return View(serviceByType);
+            }
+
+            return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
         public async Task<IActionResult> Contact(ContentType type)
         {
 

@@ -98,27 +98,37 @@
                             <li><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
                             <li>
                                 <a asp-controller="Contents" asp-action="Index"
-                                asp-route-type="@ContentType.Service"
-                                asp-route-IsFrontSideIndex="@true">
+                                   asp-route-type="@ContentType.Service"
+                                   asp-route-IsFrontSideIndex="@true">
                                     Hizmetler
                                 </a>
                             </li>
                             <li>
                                 <a asp-controller="Contents" asp-action="Index"
-                                asp-route-type="@ContentType.ServiceRegion"
-                                asp-route-IsFrontSideIndex="@true">
+                                   asp-route-type="@ContentType.ServiceRegion"
+                                   asp-route-IsFrontSideIndex="@true">
                                     Hizmet Bölgelerimiz
                                 </a>
                             </li>
                             <li>
                                 <a asp-controller="Contents" asp-action="Index"
-                                asp-route-type="@ContentType.Post"
-                                asp-route-IsFrontSideIndex="@true">
+                                   asp-route-type="@ContentType.Post"
+                                   asp-route-IsFrontSideIndex="@true">
                                     Blog
                                 </a>
                             </li>
-                            <li><a asp-controller="Home" asp-action="About">Hakkımızda</a></li>
-                            <li><a asp-controller="Home" asp-action="Contact">İletişim</a></li>
+                            <li>
+                                <a asp-controller="Home" asp-action="About"
+                                   asp-route-type="@ContentType.AboutFeature">
+                                    Hakkımızda
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Home" asp-action="Contact"
+                                   asp-route-type="@ContentType.ContactFeature">
+                                    İletişim
+                                </a>
+                            </li>
                         </ul>
                     </div>
 
