@@ -28,6 +28,13 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
             var banners = await _bannerService.GetAllBannersAsync();
             var comments = await _commentService.GetAllCommentsAsync();
             var homeFeature = await _featureService.GetByFeatureType(ContentType.HomeFeature);
+            var homeFeatureExcerpt = await _featureService.GetByFeatureType(ContentType.HomeFeatureExcerpt);
+
+            var homeFeatures = new HomeViewModel();
+
+            homeFeatures.HomeFeature.Add(homeFeature);
+            homeFeatures.HomeFeature.Add(homeFeatureExcerpt);
+
             var content = new HomeViewModel
             {
                 banners = banners,
@@ -35,7 +42,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                 Posts = contents.Where(x => x.Type == ContentType.Post),
                 ServiceRegion = contents.Where(x => x.Type == ContentType.ServiceRegion),
                 Comments = comments.OrderByDescending(x => x.CreatedAt).Take(2),
-                HomeFeature = homeFeature
+                HomeFeature = homeFeatures.HomeFeature
             };
 
             return View(content);

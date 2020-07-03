@@ -13,6 +13,7 @@ using BusinessApp.CarpetWash.MvcWebUI.Models;
 using BusinessApp.CarpetWash.MvcWebUI.Shared;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
 {
@@ -57,6 +58,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         //}
 
         // GET: Feature/Create
+        [Authorize]
         public async Task<IActionResult> Create(ContentType type)
         {
             var result = await _featureService.GetByFeatureType(type);
@@ -81,6 +83,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("Id,UserId,Title,Excerpt,FeatureTitles,FeatureDetails,ProfileImage,Location,Type,CreatedAt,UpdatedAt")] FeatureViewModel featureViewModel)
         {
             if (ModelState.IsValid)
@@ -116,6 +119,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         }
 
         // GET: Feature/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -152,6 +156,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,Title,Excerpt,FeatureTitles,FeatureDetails,CurrentImage,ProfileImage,Location,Type,UpdatedAt")] FeatureViewModel featureViewModel)
         {
             if (id != featureViewModel.Id)
@@ -216,6 +221,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         }
 
         // GET: Feature/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -236,6 +242,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         // POST: Feature/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var feature = await _featureService.FindFeatureByIdAsync(id);
@@ -252,6 +259,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize]
         private async Task<bool> FeatureExists(int id)
         {
             return await _featureService.Exist(id);

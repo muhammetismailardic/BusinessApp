@@ -57,6 +57,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("Id,ContentId,Slug,ItemType,Name,CreatedAt,UpdatedAt")] Tag tag)
         {
             //TODO: This can be added later on.
@@ -93,6 +94,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,ContentId,Slug,ItemType,Name,CreatedAt")] Tag tag)
         {
             if (id != tag.Id)
@@ -124,6 +126,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         }
 
         // GET: Tags/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -143,11 +146,14 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         // POST: Tags/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await _tagService.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
+
+        [Authorize]
         private async Task<bool> TagExists(int id)
         {
             return await _tagService.Exist(id);

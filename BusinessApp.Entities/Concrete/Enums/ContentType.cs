@@ -13,6 +13,7 @@ namespace BusinessApp.CarpetWash.Entities.Concrete.Enums
         All = 4,
         HomeFeature = 5,
         AboutFeature = 6,
-        ContactFeature = 7
+        ContactFeature = 7,
+        HomeFeatureExcerpt = 8,
     }
 }

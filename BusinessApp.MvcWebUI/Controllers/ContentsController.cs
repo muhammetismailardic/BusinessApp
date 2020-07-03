@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
 {
-    [Authorize]
+    
     public class ContentsController : Controller
     {
         private readonly IContentService _contentService;
@@ -105,6 +105,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         }
 
         // GET: Contents/Create
+        [Authorize]
         public async Task<IActionResult> Create(ContentType type)
         {
             var categories = await _categoryService.GetAllCategoriesAsync();
@@ -123,6 +124,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         //POST: Contents/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("Id,UserId,CategoryId,Title,Slug,Excerpt,Text,ProfileImage,IsActive,Type")] ContentViewModel contentViewModel, string tags)
         {
             string[] tagsarray;
@@ -168,6 +170,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         }
 
         //// GET: Contents/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             // TODO: This code can be more simplified by eliminating Categories Feature..
@@ -209,6 +212,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         //// POST: Contents/Edit/5
         //// To protect from overposting attacks, enable the specific properties you want to bind to, for 
         //// more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,CategoryId,Title,Slug,Excerpt,Text,ProfileImage,IsActive,Type,CurrentImage")] ContentViewModel contentViewModel, string tags)
@@ -282,6 +286,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         }
 
         //// GET: Contents/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -301,6 +306,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         //// POST: Contents/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var content = (await _contentService.FindContentByIdAsync(id));
