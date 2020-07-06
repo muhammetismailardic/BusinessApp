@@ -19,7 +19,7 @@
                 <input type="hidden" asp-for="UserId" />
                 <input type="hidden" asp-for="CurrentImage" />
 
-                @if (Model.Type == ContentType.AboutFeature || Model.Type == ContentType.HomeFeature)
+                @if (Model.Type != ContentType.ContactFeature)
                 {
                     <div class="form-group">
                         <label asp-for="Title" class="control-label"></label>
@@ -34,20 +34,23 @@
                     </div>
                 }
 
-                @if (Model.Type != ContentType.ContactFeature)
+                @if (Model.Type != ContentType.HomeFeatureExcerpt)
                 {
+                    @if (Model.Type != ContentType.ContactFeature)
+                    {
+                        <div class="form-group">
+                            <label asp-for="FeatureTitles" class="control-label"></label>
+                            <input asp-for="FeatureTitles" class="form-control" />
+                            <span asp-validation-for="FeatureTitles" class="text-danger"></span>
+                        </div>
+                    }
                     <div class="form-group">
-                        <label asp-for="FeatureTitles" class="control-label"></label>
-                        <input asp-for="FeatureTitles" class="form-control" />
-                        <span asp-validation-for="FeatureTitles" class="text-danger"></span>
+                        <label asp-for="FeatureDetails" class="control-label"></label>
+                        <input asp-for="FeatureDetails" class="form-control" />
+                        <span asp-validation-for="FeatureDetails" class="text-danger"></span>
                     </div>
                 }
 
-                <div class="form-group">
-                    <label asp-for="FeatureDetails" class="control-label"></label>
-                    <input asp-for="FeatureDetails" class="form-control" />
-                    <span asp-validation-for="FeatureDetails" class="text-danger"></span>
-                </div>
                 @if (Model.Type == ContentType.AboutFeature || Model.Type == ContentType.HomeFeature)
                 {
                     if (Model.Type == ContentType.AboutFeature)

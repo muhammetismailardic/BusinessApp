@@ -88,14 +88,19 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                List<string> imageList = new List<string>();
+                string uniqueFileName = null;
 
-                foreach (var image in featureViewModel.ProfileImage)
+                if (featureViewModel.ProfileImage.IsNotNull())
                 {
-                    imageList.Add(_fileExtentions.UploadedFile(image, "features"));
-                }
+                    List<string> imageList = new List<string>();
 
-                string uniqueFileName = string.Join(",", imageList);
+                    foreach (var image in featureViewModel.ProfileImage)
+                    {
+                        imageList.Add(_fileExtentions.UploadedFile(image, "features"));
+                    }
+
+                    uniqueFileName = string.Join(",", imageList);
+                }
 
                 var feature = new Feature()
                 {

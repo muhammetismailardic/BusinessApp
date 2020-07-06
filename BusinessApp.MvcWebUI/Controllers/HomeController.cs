@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BusinessApp.CarpetWash.Business.Abstract;
+using BusinessApp.CarpetWash.Entities.Concrete;
 using BusinessApp.CarpetWash.Entities.Concrete.Enums;
 using BusinessApp.CarpetWash.MvcWebUI.Models;
+using BusinessApp.CarpetWash.MvcWebUI.Shared;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
@@ -30,10 +32,17 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
             var homeFeature = await _featureService.GetByFeatureType(ContentType.HomeFeature);
             var homeFeatureExcerpt = await _featureService.GetByFeatureType(ContentType.HomeFeatureExcerpt);
 
-            var homeFeatures = new HomeViewModel();
+            var homeFeatures = new List<Feature>();
 
-            homeFeatures.HomeFeature.Add(homeFeature);
-            homeFeatures.HomeFeature.Add(homeFeatureExcerpt);
+            if (homeFeature.IsNotNull())
+            {
+                homeFeatures.Add(homeFeature);
+            }
+
+            if (homeFeatureExcerpt.IsNotNull())
+            {
+                homeFeatures.Add(homeFeatureExcerpt);
+            }
 
             var content = new HomeViewModel
             {
@@ -42,7 +51,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                 Posts = contents.Where(x => x.Type == ContentType.Post),
                 ServiceRegion = contents.Where(x => x.Type == ContentType.ServiceRegion),
                 Comments = comments.OrderByDescending(x => x.CreatedAt).Take(2),
-                HomeFeature = homeFeatures.HomeFeature
+                HomeFeature = homeFeatures
             };
 
             return View(content);

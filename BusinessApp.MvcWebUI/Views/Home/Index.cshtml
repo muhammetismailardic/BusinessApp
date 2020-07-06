@@ -11,16 +11,22 @@
     <!-- ======= Cta Section ======= -->
     <section id="cta" class="cta">
         <div class="container">
+            @{
+                var homeFeatureExcerpt = Model.HomeFeature.Where(x => x.Type == ContentType.HomeFeatureExcerpt).SingleOrDefault();
 
-            <div class="row">
-                <div class="col-lg-9 text-center text-lg-left">
-                    <h3>We've created more than <span>200 websites</span> this year!</h3>
-                    <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-                <div class="col-lg-3 cta-btn-container text-center">
-                    <a class="cta-btn align-middle" asp-controller="Home" asp-action="About" asp-route-type="@ContentType.AboutFeature">Detay</a>
-                </div>
-            </div>
+                if (homeFeatureExcerpt != null)
+                {
+                    <div class="row">
+                        <div class="col-lg-9 text-center text-lg-left">
+                            <h3>@homeFeatureExcerpt.Title <span>200 websites</span></h3>
+                            <p> @homeFeatureExcerpt.Excerpt</p>
+                        </div>
+                        <div class="col-lg-3 cta-btn-container text-center">
+                            <a class="cta-btn align-middle" asp-controller="Home" asp-action="About" asp-route-type="@ContentType.AboutFeature">Detay</a>
+                        </div>
+                    </div>
+                }
+            }
         </div>
     </section><!-- End Cta Section -->
     <!-- ======= Portfolio Section ======= -->
@@ -64,11 +70,13 @@
                         @{
                             if (Model.HomeFeature != null)
                             {
-                                <h3 data-aos="fade-up">@Model.HomeFeature.Title</h3>
-                                <p data-aos="fade-up"> @Model.HomeFeature.Excerpt </p>
+                                var homeFeature = Model.HomeFeature.Where(x => x.Type == ContentType.HomeFeature).SingleOrDefault();
 
-                                string[] splitFeatureTitles = Model.HomeFeature.FeatureTitles.Split(',');
-                                string[] splitFeatureDetails = Model.HomeFeature.FeatureDetails.Split(',');
+                                <h3 data-aos="fade-up">@homeFeature.Title</h3>
+                                <p data-aos="fade-up"> @homeFeature.Excerpt </p>
+
+                                string[] splitFeatureTitles = homeFeature.FeatureTitles.Split(',');
+                                string[] splitFeatureDetails = homeFeature.FeatureDetails.Split(',');
 
                                 <div class="row">
 
@@ -148,7 +156,7 @@
 {
     <style>
     .about-us .image {
-        background: url("images/features/@Model.HomeFeature.Image") center center no-repeat;
+        background: url("images/features/@Model.HomeFeature.Where(x=> x.Type == ContentType.HomeFeature).SingleOrDefault().Image") center center no-repeat;
         background-size: cover;
         min-height: 400px;
     }
