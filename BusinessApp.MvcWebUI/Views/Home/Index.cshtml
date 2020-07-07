@@ -68,7 +68,7 @@
                     <div class="content d-flex flex-column justify-content-center">
 
                         @{
-                            if (Model.HomeFeature != null)
+                            if (Model.HomeFeature.Count() != 0)
                             {
                                 var homeFeature = Model.HomeFeature.Where(x => x.Type == ContentType.HomeFeature).SingleOrDefault();
 
@@ -152,7 +152,7 @@
 
 </main><!-- End #main -->
 
-@if (Model.HomeFeature != null)
+@if (Model.HomeFeature.Count() != 0)
 {
     <style>
     .about-us .image {

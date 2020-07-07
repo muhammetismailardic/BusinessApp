@@ -27,7 +27,8 @@ namespace BusinessApp.CarpetWash.DataAccess.Concrete.EntityFramework
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Server=localhost\SQLEXPRESS;Database=CarpetWash;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer(@"Server=mssql07.turhost.com;Initial Catalog=CarpetWash;User=Admin; Password=5tX$$4D!;");
+                //optionsBuilder.UseSqlServer(@"Server=localhost\SQLEXPRESS;Database=CarpetWash;Trusted_Connection=True;");
             }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
