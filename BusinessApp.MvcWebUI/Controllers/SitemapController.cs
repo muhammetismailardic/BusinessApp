@@ -18,7 +18,7 @@ namespace BusinessApp.MvcWebUI.Controllers
         [Route("sitemap")]
         public async Task<ActionResult> SitemapAsync()
         {
-            string baseUrl = "http://localhost:58256/";
+            string baseUrl = "https://www.temizpakhaliyikama.com/";
 
             // get a list of published articles
             var contents = await _contentService.GetAllContentsAsync(ContentType.All);
@@ -27,12 +27,12 @@ namespace BusinessApp.MvcWebUI.Controllers
             var siteMapBuilder = new SitemapBuilder();
 
             // add the home page to the sitemap
-            siteMapBuilder.AddUrl(baseUrl, modified: DateTime.UtcNow, changeFrequency: ChangeFrequency.Weekly, priority: 1.0);
+            siteMapBuilder.AddUrl(baseUrl, modified: DateTime.UtcNow, changeFrequency: ChangeFrequency.Weekly, priority: 1.00);
 
             // add the blog posts to the sitemap
             foreach (var content in contents)
             {
-                siteMapBuilder.AddUrl(baseUrl + content.Slug + "-" + content.Id, modified: content.UpdatedAt, changeFrequency: ChangeFrequency.Weekly, priority: 0.9);
+                siteMapBuilder.AddUrl(baseUrl + content.Slug + "-" + content.Id, modified: content.UpdatedAt, changeFrequency: ChangeFrequency.Weekly, priority: 0.90);
             }
 
             // generate the sitemap xml
