@@ -190,11 +190,14 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
 
                     if (featureViewModel.ProfileImage != null)
                     {
-                        //Old Image Delete operation goes here
-                        string[] oldImages = feature.Image.Split(',');
-                        for (int i = 0; i < oldImages.Length; i++)
+                        if (feature.Image.IsNotNull())
                         {
-                            _fileExtentions.DeleteFile(_fileExtentions._rootImageDirectory + "/features/" + oldImages[i]);
+                            //Old Image Delete operation goes here
+                            string[] oldImages = feature.Image.Split(',');
+                            for (int i = 0; i < oldImages.Length; i++)
+                            {
+                                _fileExtentions.DeleteFile(_fileExtentions._rootImageDirectory + "/features/" + oldImages[i]);
+                            }
                         }
 
                         //Adding newly created image(s) to directory.

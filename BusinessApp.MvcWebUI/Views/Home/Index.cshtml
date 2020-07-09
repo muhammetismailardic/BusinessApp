@@ -18,7 +18,7 @@
                 {
                     <div class="row">
                         <div class="col-lg-9 text-center text-lg-left">
-                            <h3>@homeFeatureExcerpt.Title <span>200 websites</span></h3>
+                            <h3><span>@homeFeatureExcerpt.Title</span></h3>
                             <p> @homeFeatureExcerpt.Excerpt</p>
                         </div>
                         <div class="col-lg-3 cta-btn-container text-center">
@@ -68,10 +68,9 @@
                     <div class="content d-flex flex-column justify-content-center">
 
                         @{
-                            if (Model.HomeFeature.Count() != 0)
+                            var homeFeature = Model.HomeFeature.Where(x => x.Type == ContentType.HomeFeature).SingleOrDefault();
+                            if (homeFeature != null)
                             {
-                                var homeFeature = Model.HomeFeature.Where(x => x.Type == ContentType.HomeFeature).SingleOrDefault();
-
                                 <h3 data-aos="fade-up">@homeFeature.Title</h3>
                                 <p data-aos="fade-up"> @homeFeature.Excerpt </p>
 
@@ -152,13 +151,18 @@
 
 </main><!-- End #main -->
 
-@if (Model.HomeFeature.Count() != 0)
-{
-    <style>
-    .about-us .image {
-        background: url("images/features/@Model.HomeFeature.Where(x=> x.Type == ContentType.HomeFeature).SingleOrDefault().Image") center center no-repeat;
-        background-size: cover;
-        min-height: 400px;
+@{
+    var featureImage = Model.HomeFeature.Where(x => x.Type == ContentType.HomeFeature).SingleOrDefault();
+
+    if (featureImage != null)
+    {
+        <style>
+            .about-us .image {
+                background: url("images/features/@Model.HomeFeature.Where(x=> x.Type == ContentType.HomeFeature).SingleOrDefault().Image") center center no-repeat;
+                background-size: cover;
+                min-height: 400px;
+            }
+        </style>
     }
-    </style>
+
 }

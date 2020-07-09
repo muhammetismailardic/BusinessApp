@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -63,6 +64,15 @@ namespace BusinessApp.MvcWebUI
             services.AddAuthorization();
 
             services.AddRazorPages();
+
+            services.AddMvc(options =>
+            {
+                options.CacheProfiles.Add("Default2Days",
+                    new CacheProfile()
+                    {
+                        Duration = 172800
+                    });
+            });
 
             ////Adding Session
             //services.AddSession();

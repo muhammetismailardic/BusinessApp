@@ -24,6 +24,8 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
             _commentService = commentService;
             _featureService = featureService;
         }
+
+        [ResponseCache(CacheProfileName = "Default2Days")]
         public async Task<IActionResult> Index()
         {
             var contents = await _contetService.GetAllContentsAsync(ContentType.All);
