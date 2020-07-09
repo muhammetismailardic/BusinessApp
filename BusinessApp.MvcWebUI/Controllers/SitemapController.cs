@@ -27,12 +27,12 @@ namespace BusinessApp.MvcWebUI.Controllers
             var siteMapBuilder = new SitemapBuilder();
 
             // add the home page to the sitemap
-            siteMapBuilder.AddUrl(baseUrl, modified: DateTime.UtcNow, changeFrequency: ChangeFrequency.Weekly, priority: 1.00);
+            siteMapBuilder.AddUrl(baseUrl, modified: DateTime.UtcNow, changeFrequency: ChangeFrequency.Weekly, priority: 1.0);
 
             // add the blog posts to the sitemap
             foreach (var content in contents)
             {
-                siteMapBuilder.AddUrl(baseUrl + content.Slug + "-" + content.Id, modified: content.UpdatedAt, changeFrequency: ChangeFrequency.Weekly, priority: 0.90);
+                siteMapBuilder.AddUrl(baseUrl + content.Slug + "-" + content.Id, modified: content.UpdatedAt, changeFrequency: ChangeFrequency.Weekly, priority: 0.9);
             }
 
             // generate the sitemap xml

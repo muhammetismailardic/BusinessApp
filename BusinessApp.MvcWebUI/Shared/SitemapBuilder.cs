@@ -54,7 +54,7 @@ namespace BusinessApp.MvcWebUI.Shared
 
             if (url.Priority.HasValue)
             {
-                itemElement.Add(new XElement(NS + "priority", url.Priority.Value.ToString("N1")));
+                itemElement.Add(new XElement(NS + "priority", url.Priority.Value.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)));
             }
 
             return itemElement;
