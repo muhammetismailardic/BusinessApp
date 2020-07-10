@@ -32,6 +32,14 @@ namespace BusinessApp.MvcWebUI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.IsEssential = true;
+            });
+
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             //Adding Services..
@@ -47,7 +55,6 @@ namespace BusinessApp.MvcWebUI
             services.AddScoped<ITagDal, EfTagDal>();
             services.AddScoped<IFeatureService, FeatureManager>();
             services.AddScoped<IFeatureDal, EfFeatureDal>();
-            
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddDbContext<CarpetWashContext>(options =>
@@ -61,6 +68,7 @@ namespace BusinessApp.MvcWebUI
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie();
+
             services.AddAuthorization();
 
             services.AddRazorPages();
@@ -87,13 +95,21 @@ namespace BusinessApp.MvcWebUI
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
+            }
 
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            
             app.UseRouting();
+            
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseStaticFiles();
-            //app.UseSession();
-            app.UseHttpsRedirection();
+            
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
@@ -102,10 +118,13 @@ namespace BusinessApp.MvcWebUI
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapRazorPages();
-                endpoints.MapControllerRoute(
-                name: "default",
-                pattern:"{controller=Contents}/{action=Details}/{id?}");
+                    endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern:"{controller=Contents}/{action=Details}/{id?}");
+
+                endpoints.MapRazorPages();
             });
+
             SeedData.CreateRolesAndAdminUser(serviceProvider);
         }
     }

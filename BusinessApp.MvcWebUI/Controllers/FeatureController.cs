@@ -162,7 +162,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,Title,Excerpt,FeatureTitles,FeatureDetails,CurrentImage,ProfileImage,Location,Type,UpdatedAt")] FeatureViewModel featureViewModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,Title,Excerpt,FeatureTitles,FeatureDetails,CurrentImage,ProfileImage,Location,Type,CreatedAt,UpdatedAt")] FeatureViewModel featureViewModel)
         {
             if (id != featureViewModel.Id)
             {
