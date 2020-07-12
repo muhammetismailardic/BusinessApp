@@ -35,7 +35,8 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Shared
                     DirectoryInfo di = Directory.CreateDirectory(uploadsFolder);
                 }
 
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + formFile.FileName;
+                //uniqueFileName = Guid.NewGuid().ToString() + "_" + formFile.FileName;
+                uniqueFileName = formFile.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {

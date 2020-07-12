@@ -244,9 +244,12 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
 
                     if (contentViewModel.ProfileImage != null)
                     {
-                        //Old Image Delete operation goes here
-                        var directory = _fileExtentions._rootImageDirectory + "/content/" + content.Image;
-                        _fileExtentions.DeleteFile(directory);
+                        if(content.Image != null)
+                        {
+                            //Old Image Delete operation goes here
+                            var directory = _fileExtentions._rootImageDirectory + "/content/" + content.Image;
+                            _fileExtentions.DeleteFile(directory);
+                        }
 
                         //Adding newly added image to directory.
                         uniqueFileName = _fileExtentions.UploadedFile(contentViewModel.ProfileImage, "content");
