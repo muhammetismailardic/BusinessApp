@@ -107,7 +107,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                     if (role == "Administrator")
                     {
                         var result = _signInManager.PasswordSignInAsync(loginViewModel.UserName,
-                        loginViewModel.Password, loginViewModel.RememberMe, loginViewModel.RememberMe).Result;
+                        loginViewModel.Password, loginViewModel.RememberMe,lockoutOnFailure: false).Result;
 
                         if (result.Succeeded)
                         {

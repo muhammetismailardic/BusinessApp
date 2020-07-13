@@ -32,15 +32,19 @@ namespace BusinessApp.MvcWebUI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //// Session ı serviste tutma
             services.AddDistributedMemoryCache();
 
+            ////Adding Session
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddRazorPages();
 
             //Adding Services..
             services.AddScoped<IBannerService, BannerManager>();
@@ -66,12 +70,28 @@ namespace BusinessApp.MvcWebUI
                 .AddEntityFrameworkStores<CarpetWashContext>()
                 .AddDefaultTokenProviders();
 
+            //User session time out
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(120);
+                options.LoginPath = "/Identity/Account/Login";
+                options.SlidingExpiration = true;
+            });
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Default Lockout settings.
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(60);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+            });
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie();
 
             services.AddAuthorization();
 
-            services.AddRazorPages();
+            //services.AddRazorPages();
 
             services.AddMvc(options =>
             {
@@ -81,11 +101,6 @@ namespace BusinessApp.MvcWebUI
                         Duration = 172800
                     });
             });
-
-            ////Adding Session
-            //services.AddSession();
-            //// Session ı serviste tutma
-            //services.AddDistributedMemoryCache();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
