@@ -73,7 +73,7 @@ namespace BusinessApp.MvcWebUI
             //User session time out
             services.ConfigureApplicationCookie(options =>
             {
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(120);
+                options.ExpireTimeSpan = TimeSpan.FromHours(2);
                 options.LoginPath = "/Identity/Account/Login";
                 options.SlidingExpiration = true;
             });
@@ -81,7 +81,7 @@ namespace BusinessApp.MvcWebUI
             services.Configure<IdentityOptions>(options =>
             {
                 // Default Lockout settings.
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(60);
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
                 options.Lockout.MaxFailedAccessAttempts = 5;
                 options.Lockout.AllowedForNewUsers = true;
             });

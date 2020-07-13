@@ -15,6 +15,7 @@ using BusinessApp.CarpetWash.MvcWebUI.Shared;
 using Microsoft.AspNetCore.Hosting;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Authorization;
+using System.Linq;
 
 namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
 {
@@ -63,18 +64,16 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
 
             if (IsFrontSideIndex)
             {
-                int pageSize = 2;
-
+                int pageSize = 3;
                 var frontSideContents = new ContentViewModel()
                 {
-                    Contents = contents.Skip((page - 1) * pageSize).Take(pageSize).ToList(),
+                    Contents = contents.OrderByDescending(x => x.UpdatedAt).Skip((page - 1) * pageSize).Take(pageSize).ToList(),
                     PageCount = (int)Math.Ceiling(contents.Count / (double)pageSize),
                     PageSize = pageSize,
                     CurrentPage = page,
                     Type = type,
                     IsFrontSideIndex = IsFrontSideIndex
                 };
-
                 return View("FrontSide/Index", frontSideContents);
             }
             return View(contents);
@@ -244,9 +243,12 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
 
                     if (contentViewModel.ProfileImage != null)
                     {
-                        //Old Image Delete operation goes here
-                        var directory = _fileExtentions._rootImageDirectory + "/content/" + content.Image;
-                        _fileExtentions.DeleteFile(directory);
+                        if(content.Image != null)
+                        {
+                            //Old Image Delete operation goes here
+                            var directory = _fileExtentions._rootImageDirectory + "/content/" + content.Image;
+                            _fileExtentions.DeleteFile(directory);
+                        }
 
                         //Adding newly added image to directory.
                         uniqueFileName = _fileExtentions.UploadedFile(contentViewModel.ProfileImage, "content");
