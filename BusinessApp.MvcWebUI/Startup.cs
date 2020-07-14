@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using BusinessApp.CarpetWash.Business.Abstract;
@@ -45,6 +46,8 @@ namespace BusinessApp.MvcWebUI
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
+
+            services.AddDirectoryBrowser();
 
             //Adding Services..
             services.AddScoped<IBannerService, BannerManager>();
@@ -117,8 +120,35 @@ namespace BusinessApp.MvcWebUI
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            
+
+            // Use static files
+            const string cacheMaxAge = "604800";
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = ctx =>
+                {
+                    // Cache static files for 30 days
+                    //ctx.Context.Response.Headers.Append("Cache-Control", "public,max-age=2592000");
+                    ctx.Context.Response.Headers.Append("Cache-Control", $"public, max-age={cacheMaxAge}");
+                    ctx.Context.Response.Headers.Append("Expires", DateTime.UtcNow.AddDays(30).ToString("R", CultureInfo.InvariantCulture));
+                }
+            });
+
+            //app.UseStaticFiles(new StaticFileOptions()
+            //{
+            //    HttpsCompression = Microsoft.AspNetCore.Http.Features.HttpsCompressionMode.Compress,
+            //    OnPrepareResponse = (context) =>
+            //    {
+            //        var headers = context.Context.Response.GetTypedHeaders();
+            //        headers.CacheControl = new Microsoft.Net.Http.Headers.CacheControlHeaderValue
+            //        {
+            //            Public = true,
+            //            MaxAge = TimeSpan.FromDays(30)
+            //        };
+
+            //    }
+            //});
+
             app.UseRouting();
             
             app.UseAuthentication();

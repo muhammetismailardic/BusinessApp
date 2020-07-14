@@ -1,24 +1,30 @@
 ﻿@model BusinessApp.CarpetWash.MvcWebUI.Models.RegisterViewModel
 @using BusinessApp.CarpetWash.MvcWebUI.Shared;
 
+<!-- Modal -->
 <div class="modal fade" id="registration-modal" tabindex="-1" role="dialog" aria-labelledby="login-modal-reg-btn" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="ws-modal-body">
-                <h2>Register</h2>
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Kayıt Ol!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
                 @{
                     var modalData = TempData.Get<ModalData>("modal");
                     if (modalData.IsNotNull())
                     {
-                    <p class="text-danger modal-error"><b>@modalData.Error</b></p>
+                        <p class="text-danger modal-error"><b>@modalData.Error</b></p>
                     }
                 }
                 <form method="post" asp-controller="Account" asp-action="Register">
                     <input name="isFBUser" value="false" hidden />
                     <div class="text-center social-btn">
                         <a id="fb-login-btn-reg" class="btn btn-primary btn-lg" disabled><i class="fab fa-facebook-f"></i><b>Facebook</b></a>
-                        <a id="tw-login-btn-reg" class="btn btn-info btn-lg"><i class="fab fa-twitter"></i><b>Twitter</b></a>
-                        <a id="go-login-btn-reg" class="btn btn-danger btn-lg"><i class="fab fa-google"></i><b>Google</b></a>
+                        <a id="tw-login-btn-reg" class="btn btn-info btn-lg" disabled><i class="fab fa-twitter"></i><b>Twitter</b></a>
+                        <a id="go-login-btn-reg" class="btn btn-danger btn-lg" disabled><i class="fab fa-google"></i><b>Google</b></a>
                     </div>
                     <div class="or-seperator"><i>or</i></div>
 
@@ -67,15 +73,14 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success btn-block submit-btn" name="register">Register</button>
+                        <button type="submit" class="btn btn-success btn-block submit-btn" name="register">Kayıt</button>
                     </div>
                 </form>
             </div>
-
-            <div class="ws-modal-footer">
+            <div class="modal-footer">
                 <div class="hint-text small">
-                    Already have an account?
-                    <a href="#" id="reg-modal-log-btn" data-toggle="modal" data-target="#login-modal" data-dismiss="modal" class="text-success"><strong>Log In Now!</strong></a>
+                    Zaten bir hesabınız varmı?
+                    <a href="#" id="reg-modal-log-btn" data-toggle="modal" data-target="#login-modal" data-dismiss="modal" class="text-success"><strong>Şimdi Giriş Yapın!</strong></a>
                 </div>
             </div>
         </div>

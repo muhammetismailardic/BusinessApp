@@ -1,11 +1,17 @@
 ﻿@model BusinessApp.CarpetWash.MvcWebUI.Models.LoginViewModel
 @using BusinessApp.CarpetWash.MvcWebUI.Shared;
 
-<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="topnavbar-login-btn reg-modal-log-btn" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<!-- Modal -->
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="ws-modal-body">
-                <h2>Log In</h2>
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Giriş Yap</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
                 @{
                     var modalData = TempData.Get<ModalData>("modal");
                     if (modalData.IsNotNull())
@@ -18,10 +24,10 @@
                     <input name="isGmailUser" value="false" hidden />
                     <div class="text-center social-btn">
                         <a id="fb-login-btn" class="btn btn-primary btn-lg" disabled><i class="fab fa-facebook-f"></i><b>Facebook</b></a>
-                        <a id="tw-login-btn" class="btn btn-info btn-lg"><i class="fab fa-twitter"></i><b>Twitter</b></a>
-                        <a id="go-login-btn" class="btn btn-danger btn-lg"><i class="fab fa-google"></i><b>Google</b></a>
+                        <a id="tw-login-btn" class="btn btn-info btn-lg" disabled><i class="fab fa-twitter"></i><b>Twitter</b></a>
+                        <a id="go-login-btn" class="btn btn-danger btn-lg" disabled><i class="fab fa-google"></i><b>Google</b></a>
                     </div>
-                    <div class="or-seperator"><i>or</i></div>
+                    <div class="or-seperator"><i>veya</i></div>
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -41,17 +47,17 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success btn-block submit-btn" name="login">Log In</button>
+                        <button type="submit" class="btn btn-success btn-block submit-btn" name="login">Giriş Yap</button>
                     </div>
                     <div class="clearfix">
-                        <label class="float-left checkbox-inline"><input asp-for="RememberMe" type="checkbox" id="defaultCheck" value="true"> Remember me</label>
-                        <a href="#" id="log-modal-forgot-pass-btn" class="float-right text-success" data-toggle="modal" data-target="#forgotPassword-modal" data-dismiss="modal">Forgot Password?</a>
+                        <label class="float-left checkbox-inline"><input asp-for="RememberMe" type="checkbox" id="defaultCheck" value="true"> Beni Hatırla</label>
+                        <a href="#" id="log-modal-forgot-pass-btn" class="float-right text-success" data-toggle="modal" data-target="#forgotPassword-modal" data-dismiss="modal">Şifremi Unuttum?</a>
                     </div>
                 </form>
             </div>
-            <div class="ws-modal-footer">
+            <div class="modal-footer">
                 <div class="hint-text small">
-                    Don't have an account?
+                    Hesabınız yok mu?
                     <a href="#" id="login-modal-reg-btn" data-toggle="modal" data-target="#registration-modal" data-dismiss="modal" class="text-success">
                         <strong>Register Now!</strong>
                     </a>
