@@ -76,7 +76,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                 };
                 return View("FrontSide/Index", frontSideContents);
             }
-            return View(contents);
+            return View(contents.OrderByDescending(x => x.UpdatedAt));
         }
 
 
@@ -167,6 +167,10 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                 }
                 return RedirectToAction("Index", "Contents", new { type = content.Type });
             }
+
+            var categories = await _categoryService.GetAllCategoriesAsync();
+            contentViewModel.CategoryList = new SelectList(categories, "Id", "Name");
+
             return View(contentViewModel);
         }
 

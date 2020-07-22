@@ -4,8 +4,7 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<!-- Bootsrap tag input -->
-@*<link href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet">*@
+
 <!-- Responsive table -->
 <div class="col-md-12">
     <div class="panel panel-default">
@@ -18,7 +17,7 @@
             }
         }
         <div class="panel-body">
-            <table class="table table-striped footable">
+            <table id="index-table" class="display" style="width:100%">
                 <thead>
                     <tr>
                         <th data-hide="phone,tablet">Image</th>
@@ -71,55 +70,3 @@
     </div>
 </div>
 <!-- /Responsive table -->
-
-<style>
-    table table-striped footable, th, td {
-        vertical-align: middle !important;
-    }
-</style>
-
-<script>
-    $(document).ready(function () {
-        $(".btnHide").hide();
-        $('#example').DataTable();
-
-        //alert("Test");
-        $("#checkAll").click(function () {
-            //alert("içerde");
-            $(".check").prop('checked', $(this).prop('checked'));
-
-            if ($(".check").prop('checked')) {
-                $(".btnHide").show();
-            }
-            else {
-                $(".btnHide").hide();
-            }
-        });
-
-        $("#delete").click(function () {
-            var selectedIDs = new Array();
-            $('.check').each(function () {
-                if ($(this).prop('checked')) {
-                    selectedIDs.push($(this).val());
-                }
-            });
-
-            var options = {};
-            options.url = "/Tags/DeleteAllTags";
-            options.type = "POST";
-            options.data = JSON.stringify(selectedIDs);
-            alert(options.data);
-            options.contentType = "application/json";
-            options.dataType = "json";
-            options.success = function (msg) {
-                alert(msg);
-            };
-            options.error = function () {
-                alert("Error while deleting the records!");
-            };
-            $.ajax(options);
-
-        });
-    });
-</script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
