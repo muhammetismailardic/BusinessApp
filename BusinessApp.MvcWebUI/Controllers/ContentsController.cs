@@ -15,7 +15,7 @@ using BusinessApp.CarpetWash.MvcWebUI.Shared;
 using Microsoft.AspNetCore.Hosting;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Authorization;
-using System.Linq;
+using Schema.NET;
 
 namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
 {
@@ -98,6 +98,8 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
 
             if (IsFrontSideDetails)
             {
+                ViewBag.JasonLd = StructuredDataSet(content);
+
                 return View("FrontSide/Details", content);
             }
             return View(content);
@@ -327,5 +329,56 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         {
             return await _contentService.Exist(id);
         }
+
+        #region Tools
+        private Article StructuredDataSet(Content _content)
+        {
+            //TODO: Logo Ekle..
+            var organization = new Organization()
+            {
+                Name = "TemizPak Halı Yıkama",
+                Email = "info.temizpakhaliyikama.com ",
+
+                Address = new PostalAddress()
+                {
+                    StreetAddress = "Mareşal Fevzi Çakmak Caddesi",
+                    AddressLocality = "Beylikdüzü",
+                    AddressRegion = "İstanbul",
+                    PostalCode = "34128",
+                    AddressCountry = "Türkiye"
+                },
+
+                Url = new Uri("https://www.temizpakhaliyikama.com"),
+                Logo = new Uri("https://www.temizpakhaliyikama.com/images/content"),
+                SameAs = new Uri("https://www.facebook.com/")
+            };
+
+            Uri ImageUri = new Uri("https://www.temizpakhaliyikama.com/images/content/" + _content.Image.ToString());
+
+            Person author = new Person();
+            author.Name = _content.User.UserName;
+
+            //Getting Structured Data.
+            var contentStructuredSchema = new Article()
+            {
+                Author = author,
+                Creator = author,
+                DatePublished = new DateTimeOffset(_content.CreatedAt, TimeSpan.Zero),
+                DateModified = new DateTimeOffset(_content.UpdatedAt, TimeSpan.Zero),
+                Description = _content.Excerpt,
+                Headline = _content.Title,
+                Publisher = new Organization() { Name = "TemizPak Halı Yıkama" },
+                ArticleBody = _content.Excerpt,
+                Name = _content.Title,
+                Image = ImageUri,
+                MainEntityOfPage = new Values<ICreativeWork, Uri>(ImageUri),
+                ThumbnailUrl = ImageUri,
+                CopyrightHolder = organization,
+            };
+
+            return contentStructuredSchema;
+        }
+        #endregion
+
     }
 }

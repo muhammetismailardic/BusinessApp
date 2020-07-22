@@ -9,6 +9,10 @@
     ViewData["Title"] = "Details";
 }
 
+<script type=\"application/ld+json"\>
+    @Html.Raw(@ViewBag.JasonLd);
+</script>
+
 <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
@@ -39,9 +43,7 @@
                             <img src="~/images/content/@Model.Image" alt="" class="img-fluid">
                         </div>
 
-                        <h2 class="entry-title">
-                            <a href="#">@Model.Title</a>
-                        </h2>
+                        <h1 class="entry-title"> <a href="#">@Model.Title</a> </h1>
 
                         <div class="entry-meta">
                             <ul>

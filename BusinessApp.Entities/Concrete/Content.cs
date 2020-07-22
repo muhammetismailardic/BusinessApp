@@ -26,7 +26,7 @@ namespace BusinessApp.CarpetWash.Entities.Concrete
         public int VisitCount { get; set; }
         public ContentType Type { get; set; }
         public DateTime CreatedAt { get; set; }
-        public DateTime? UpdatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
 
         public User User { get; set; }
         public Category Category { get; set; }

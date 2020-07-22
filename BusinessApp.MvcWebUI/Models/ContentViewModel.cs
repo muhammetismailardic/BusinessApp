@@ -15,8 +15,14 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Models
         public int Id { get; set; }
         public string UserId { get; set; }
         public int CategoryId { get; set; }
+
+        [Required]
         public string Title { get; set; }
+
+        [Required]
         public string Slug { get; set; }
+
+        [Required]
         public string Excerpt { get; set; }
         public string Text { get; set; }
         public bool IsActive { get; set; }
