@@ -98,7 +98,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
 
             if (IsFrontSideDetails)
             {
-                ViewBag.JasonLd = StructuredDataSet(content);
+                ViewBag.JasonLd = StructuredDataSet(content).ToString();
 
                 return View("FrontSide/Details", content);
             }
