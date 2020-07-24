@@ -3,11 +3,15 @@
 @using BusinessApp.CarpetWash.MvcWebUI.Shared
 @using BusinessApp.CarpetWash.Entities.Concrete.Enums
 <head>
+    <script type="application/ld+json">
+        @Html.Raw(ViewBag.JasonLd)
+    </script>
+
     <meta name="google-site-verification" content="kpHUkYzzXZxrHWkNDPdu9Anb_XIZ6ZAkPKWqnGDW1G0" />
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Gürpak Halı Yıkama</title>
+    <title>@ViewData["Title"]</title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
 

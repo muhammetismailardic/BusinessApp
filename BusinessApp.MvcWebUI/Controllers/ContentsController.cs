@@ -340,7 +340,7 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
             //TODO: Logo Ekle..
             var organization = new Organization()
             {
-                Name = "TemizPak Halı Yıkama",
+                Name = "TemizPak Hali Yikama",
                 Email = "info.temizpakhaliyikama.com ",
 
                 Address = new PostalAddress()
@@ -353,17 +353,20 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                 },
 
                 Url = new Uri("https://www.temizpakhaliyikama.com"),
-                Logo = new Uri("https://www.temizpakhaliyikama.com/images/content"),
+                Logo = new Uri("https://www.temizpakhaliyikama.com/assets/img/favicon.png"),
                 SameAs = new Uri("https://www.facebook.com/")
             };
 
             Uri ImageUri = new Uri("https://www.temizpakhaliyikama.com/images/content/" + _content.Image.ToString());
+            Uri OrgUri = new Uri("https://www.temizpakhaliyikama.com/assets/img/favicon.png");
+
+
 
             Person author = new Person();
             author.Name = _content.User.UserName;
 
             //Getting Structured Data.
-            var contentStructuredSchema = new Article()
+            var contentStructuredSchema = new Schema.NET.Article()
             {
                 Author = author,
                 Creator = author,

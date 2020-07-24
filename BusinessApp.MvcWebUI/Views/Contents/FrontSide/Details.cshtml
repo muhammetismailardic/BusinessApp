@@ -6,12 +6,8 @@
 @inject UserManager<User> UserManager
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = Model.Title.ToString();
 }
-
-<script type="application/ld+json">
-    @Html.Raw(@ViewBag.JasonLd);
-</script>
 
 <main id="main">
 
