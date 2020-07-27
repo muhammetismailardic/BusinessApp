@@ -352,15 +352,15 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                     AddressCountry = "Türkiye"
                 },
 
-                Url = new Uri("https://www.temizpakhaliyikama.com"),
+                Url = new Uri("https://www.temizpakhaliyikama.com/"),
                 Logo = new Uri("https://www.temizpakhaliyikama.com/assets/img/favicon.png"),
-                SameAs = new Uri("https://www.facebook.com/")
+                //SameAs = new Uri("https://www.facebook.com/")
             };
 
             Uri ImageUri = new Uri("https://www.temizpakhaliyikama.com/images/content/" + _content.Image.ToString());
-            Uri OrgUri = new Uri("https://www.temizpakhaliyikama.com/assets/img/favicon.png");
 
-
+            //TODO: This will be changes with logo image
+            Uri OrgLogoUri = new Uri("https://www.temizpakhaliyikama.com/assets/img/favicon.png");
 
             Person author = new Person();
             author.Name = _content.User.UserName;
@@ -374,11 +374,11 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
                 DateModified = new DateTimeOffset(_content.UpdatedAt, TimeSpan.Zero),
                 Description = _content.Excerpt,
                 Headline = _content.Title,
-                Publisher = new Organization() { Name = "TemizPak Halı Yıkama" },
+                Publisher = new Organization() { Name = "TemizPak Halı Yıkama", Logo = new ImageObject() { Url = OrgLogoUri } },
                 ArticleBody = _content.Excerpt,
                 Name = _content.Title,
                 Image = ImageUri,
-                MainEntityOfPage = new Values<ICreativeWork, Uri>(ImageUri),
+                MainEntityOfPage = new Values<ICreativeWork, Uri>(new Uri("https://www.temizpakhaliyikama.com/" + _content.Slug + "-" + _content.Id)),
                 ThumbnailUrl = ImageUri,
                 CopyrightHolder = organization,
             };

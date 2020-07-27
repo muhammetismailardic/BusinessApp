@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" amp>
 @using BusinessApp.CarpetWash.MvcWebUI.Shared
 @using BusinessApp.CarpetWash.Entities.Concrete.Enums
 <head>
@@ -72,7 +72,7 @@
             <div class="logo mr-auto">
                 <h1 class="text-light"><a asp-controller="Home" asp-action="Index">Gürpak</a></h1>
                 <!-- Uncomment below if you prefer to use an image logo -->
-                <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+                @*<a asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" alt="" class="img-fluid"></a>*@
             </div>
             @await Component.InvokeAsync("Navigation")
         </div>
