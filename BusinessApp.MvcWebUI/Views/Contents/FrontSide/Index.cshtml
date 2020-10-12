@@ -1,7 +1,7 @@
 ﻿@model BusinessApp.CarpetWash.MvcWebUI.Models.ContentViewModel
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "HomeIndex";
+    ViewData["Title"] = ViewBag.IndexName;
 }
 
 <main id="main">
@@ -11,10 +11,10 @@
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                <h2>Blog</h2>
+                <h2>@ViewBag.IndexName</h2>
                 <ol>
                     <li><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
-                    <li>Blog</li>
+                    <li>@ViewBag.IndexName</li>
                 </ol>
             </div>
 

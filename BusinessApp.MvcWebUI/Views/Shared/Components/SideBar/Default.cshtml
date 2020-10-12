@@ -16,7 +16,8 @@
             @{
                 foreach (var item in Model.Services)
                 {
-                    <li><a asp-controller="Contents" asp-action="Details" asp-route-id="@item.Id" asp-route-IsFrontSideDetails="@true">@item.Title <span></span></a></li>
+                    @*<li><a asp-controller="Contents" asp-action="Details" asp-route-id="@item.Id" asp-route-IsFrontSideDetails="@true">@item.Title <span></span></a></li>*@
+                    <li><a href="/@item.Slug-@item.Id">@item.Title <span></span></a></li>
                 }
             }
         </ul>
@@ -29,7 +30,8 @@
             {
                 <div class="post-item clearfix">
                     <img src="~/images/content/@item.Image" alt="">
-                    <h4><a asp-controller="Contents" asp-action="Details" asp-route-id="@item.Id" asp-route-IsFrontSideDetails="@true">@item.Title</a></h4>
+                    @*<h4><a asp-controller="Contents" asp-action="Details" asp-route-id="@item.Id" asp-route-IsFrontSideDetails="@true">@item.Title</a></h4>*@
+                    <h4><a href="/@item.Slug-@item.Id">@item.Title</a></h4>
                     <time datetime="2020-01-01">@item.UpdatedAt</time>
                 </div>
             }

@@ -4,22 +4,19 @@
         <li><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
         <li>
             <a asp-controller="Contents" asp-action="Index"
-               asp-route-type="@ContentType.Service"
-               asp-route-IsFrontSideIndex="@true">
+               asp-route-type="@ContentType.Service">
                 Hizmetler
             </a>
         </li>
         <li>
             <a asp-controller="Contents" asp-action="Index"
-               asp-route-type="@ContentType.ServiceRegion"
-               asp-route-IsFrontSideIndex="@true">
+               asp-route-type="@ContentType.ServiceRegion">
                 Hizmet Bölgelerimiz
             </a>
         </li>
         <li>
             <a asp-controller="Contents" asp-action="Index"
-               asp-route-type="@ContentType.Post"
-               asp-route-IsFrontSideIndex="@true">
+               asp-route-type="@ContentType.Post">
                 Blog
             </a>
         </li>

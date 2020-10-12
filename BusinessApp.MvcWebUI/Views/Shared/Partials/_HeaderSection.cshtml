@@ -1,0 +1,47 @@
+﻿
+@{
+    if (ViewBag.JasonLd != null)
+    {
+        <script type="application/ld+json">
+            @Html.Raw(ViewBag.JasonLd)
+        </script>
+
+    }
+}
+
+<meta name="google-site-verification" content="kpHUkYzzXZxrHWkNDPdu9Anb_XIZ6ZAkPKWqnGDW1G0" />
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>@ViewData["Title"]</title>
+<meta content="" name="descriptison">
+<meta content="" name="keywords">
+
+<!-- Favicons -->
+@*<link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">*@
+
+<!-- Google Fonts -->
+@*<link href="~/css/googlefonts.css" rel="preload" as="style" onload="this.rel='stylesheet'" />*@
+
+<!-- Vendor CSS Files -->
+<link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="preload" as="style" onload="this.rel='stylesheet'">
+<link href="~/assets/vendor/icofont/icofont.min.css" rel="preload" as="style" onload="this.rel='stylesheet'">
+<link href="~/assets/vendor/boxicons/css/boxicons.min.css" rel="preload" as="style" onload="this.rel='stylesheet'">
+@*<link href="~/assets/vendor/animate.css/animate.min.css" rel="preload" as="style" onload="this.rel='stylesheet'">*@
+@*<link href="~/assets/vendor/venobox/venobox.css" rel="preload" as="style" onload="this.rel='stylesheet'">*@
+@*<link href="~/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="preload" as="style" onload="this.rel='stylesheet'">*@
+@*<link href="~/assets/vendor/aos/aos.css" rel="preload" as="style" onload="this.rel='stylesheet'">*@
+
+<!-- Template Main CSS File -->
+<link href="~/assets/css/style.css" rel="preload" as="style" onload="this.rel='stylesheet'">
+
+<!-- Custom Models -->
+@await Component.InvokeAsync("LoginModel")
+@await Component.InvokeAsync("RegisterModel")
+
+<!-- =======================================================
+  * Template Name: Flattern - v2.0.0
+  * Template URL: https://bootstrapmade.com/flattern-multipurpose-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->

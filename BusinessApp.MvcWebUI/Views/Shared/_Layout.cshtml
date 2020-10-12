@@ -1,54 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="tr" amp>
+<html lang="tr">
 @using BusinessApp.CarpetWash.MvcWebUI.Shared
 @using BusinessApp.CarpetWash.Entities.Concrete.Enums
 <head>
-    <script type="application/ld+json">
-        @Html.Raw(ViewBag.JasonLd)
-    </script>
-
-    <meta name="google-site-verification" content="kpHUkYzzXZxrHWkNDPdu9Anb_XIZ6ZAkPKWqnGDW1G0" />
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-    <title>@ViewData["Title"]</title>
-    <meta content="" name="descriptison">
-    <meta content="" name="keywords">
-
-    <!-- Favicons -->
-    @*<link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">*@
-
-    <!-- Google Fonts -->
-    <link href="~/css/googlefonts.css" rel="preload" as="style" onload="this.rel='stylesheet'" />
-
-
-    <!-- Vendor CSS Files -->
-    <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="preload" as="style" onload="this.rel='stylesheet'">
-
-
-    <link href="~/assets/vendor/icofont/icofont.min.css" rel="preload" as="style" onload="this.rel='stylesheet'">
-    <link link rel="preload" href="~/assets/vendor/boxicons/css/boxicons.min.css" as="style" onload="this.rel='stylesheet'">
-
-
-    @*<link href="~/assets/vendor/animate.css/animate.min.css" rel="stylesheet">*@
-    @*<link href="~/assets/vendor/venobox/venobox.css" rel="stylesheet">*@
-    @*<link href="~/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="preload" as="style" onload="this.rel='stylesheet'">*@
-    <link href="~/assets/vendor/aos/aos.css" rel="preload" as="style" onload="this.rel='stylesheet'">
-
-    <!-- Template Main CSS File -->
-    <link href="~/assets/css/style.css" rel="stylesheet">
-
-    <!-- =======================================================
-    * Template Name: Flattern - v2.0.0
-    * Template URL: https://bootstrapmade.com/flattern-multipurpose-bootstrap-template/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
-
-    <!-- ======= ViewModels For Login and Register ======= -->
-    @await Component.InvokeAsync("LoginModel")
-    @await Component.InvokeAsync("RegisterModel")
+    @await Html.PartialAsync("~/Views/Shared/Partials/_HeaderSection.cshtml")
 </head>
 
 <body>
@@ -184,37 +139,6 @@
     </footer><!-- End Footer -->
 
     <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
-
-    <!-- Vendor JS Files -->
-    <script src="~/assets/vendor/jquery/jquery.min.js"></script>
-    <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-    <script src="~/assets/vendor/php-email-form/validate.js"></script>
-    <script src="~/assets/vendor/jquery-sticky/jquery.sticky.js"></script>
-    <script src="~/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="~/assets/vendor/venobox/venobox.min.js"></script>
-    <script src="~/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-    <script src="~/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-    <script src="~/assets/vendor/aos/aos.js"></script>
-
-    @*<script src="~/lib/jquery/jquery.min.js"></script>*@
-    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
-
-    <!-- Template Main JS File -->
-    <script src="~/assets/js/main.js"></script>
-
-    @{
-        var modalData = TempData.Get<ModalData>("modal");
-
-        if (modalData.IsNotNull())
-        {
-            <script type='text/javascript'>
-        $(document).ready(function () {
-            $('#@modalData.Type').modal('show');
-        });
-            </script>
-        }
-    }
+    @await Html.PartialAsync("~/Views/Shared/Partials/_ScriptSection.cshtml")
 </body>
 </html>

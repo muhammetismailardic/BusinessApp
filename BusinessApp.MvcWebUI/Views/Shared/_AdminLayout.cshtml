@@ -61,7 +61,7 @@
                     <div class="sidebar-link-addon"><i class="typcn typcn-plus"></i></div>
                     <!-- Sidebar submenu -->
                     <ul class="sidebar-submenu">
-                        <li><a asp-controller="Contents" asp-action="Index" asp-route-type="@ContentType.Post">All Posts</a></li>
+                        <li><a asp-controller="Contents" asp-action="Index" asp-route-type="@ContentType.Post" asp-route-IsFrontSideIndex="@false">All Posts</a></li>
                         <li><a asp-controller="Contents" asp-action="Create" asp-route-type="@ContentType.Post">Add New</a></li>
                     </ul>
                     <!-- /Sidebar submenu -->
@@ -71,7 +71,7 @@
                     <div class="sidebar-link-addon"><i class="typcn typcn-plus"></i></div>
                     <!-- Sidebar submenu -->
                     <ul class="sidebar-submenu">
-                        <li><a asp-controller="Contents" asp-action="Index" asp-route-type="@ContentType.Service">All Services</a></li>
+                        <li><a asp-controller="Contents" asp-action="Index" asp-route-type="@ContentType.Service" asp-route-IsFrontSideIndex="@false">All Services</a></li>
                         <li><a asp-controller="Contents" asp-action="Create" asp-route-type="@ContentType.Service">Add New</a></li>
                     </ul>
                     <!-- /Sidebar submenu -->
@@ -82,7 +82,7 @@
                     <div class="sidebar-link-addon"><i class="typcn typcn-plus"></i></div>
                     <!-- Sidebar submenu -->
                     <ul class="sidebar-submenu">
-                        <li><a asp-controller="Contents" asp-action="Index" asp-route-type="@ContentType.ServiceRegion">All Regions</a></li>
+                        <li><a asp-controller="Contents" asp-action="Index" asp-route-type="@ContentType.ServiceRegion" asp-route-IsFrontSideIndex="@false">All Regions</a></li>
                         <li><a asp-controller="Contents" asp-action="Create" asp-route-type="@ContentType.ServiceRegion">Add New</a></li>
                     </ul>
                     <!-- /Sidebar submenu -->

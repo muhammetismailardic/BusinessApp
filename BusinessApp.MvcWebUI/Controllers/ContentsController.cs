@@ -40,22 +40,28 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
         }
 
         // GET: Contents
-        public async Task<IActionResult> Index(ContentType type, bool IsFrontSideIndex = false, int page = 1)
+        [Route("/Content/Index/")]
+        public async Task<IActionResult> Index(ContentType type, bool IsFrontSideIndex = true, int page = 1)
         {
             ICollection<Content> contents;
+            ViewBag.IndexName = "";
             switch (type)
             {
                 case ContentType.Unknown:
                     contents = await _contentService.GetAllContentsAsync(ContentType.Unknown);
+                    ViewBag.IndexName = "Unkown Content";
                     break;
                 case ContentType.Service:
                     contents = await _contentService.GetAllContentsAsync(ContentType.Service);
+                    ViewBag.IndexName = "Hizmetler";
                     break;
                 case ContentType.ServiceRegion:
                     contents = await _contentService.GetAllContentsAsync(ContentType.ServiceRegion);
+                    ViewBag.IndexName = "Hizmet Bölgeleri";
                     break;
                 case ContentType.Post:
                     contents = await _contentService.GetAllContentsAsync(ContentType.Post);
+                    ViewBag.IndexName = "Halı Yıkama Haberler";
                     break;
                 default:
                     contents = null;
@@ -78,7 +84,6 @@ namespace BusinessApp.CarpetWash.MvcWebUI.Controllers
             }
             return View(contents.OrderByDescending(x => x.UpdatedAt));
         }
-
 
         // GET: Contents/Details/5
         [Route("/Content/Details/{id:int}")]

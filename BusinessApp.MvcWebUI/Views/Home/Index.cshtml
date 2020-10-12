@@ -48,7 +48,7 @@
                             <div class="portfolio-info" style="opacity: 0.8;">
                                 <h4>@item.Title</h4>
                                 <p>@item.Excerpt</p>
-                                <a href="~/images/content/@item.Image" data-gall="portfolioGallery" class="venobox preview-link" title="@item.Title"><i class="bx bx-plus"></i></a>
+                                <a href="#" class="venobox preview-link" title=""><i class="bx bx-plus"></i></a>
                                 <a href="/@item.Slug-@item.Id" class="details-link" title="Daha Fazla"><i class="bx bx-link"></i></a>
                             </div>
                         </div>
@@ -158,7 +158,7 @@
     {
         <style>
             .about-us .image {
-                background: url("images/features/@Model.HomeFeature.Where(x=> x.Type == ContentType.HomeFeature).SingleOrDefault().Image") center center no-repeat;
+                background: url("images/features/@featureImage.Image") center center no-repeat;
                 background-size: cover;
                 min-height: 400px;
             }
